@@ -75,6 +75,11 @@ public class Book {
     public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" + "id=" + id + ", title=" + title + ", price=" + price + ", author=" + author + ", releaseDate=" + releaseDate + '}';
+    }
     
     
     

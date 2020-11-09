@@ -6,18 +6,9 @@
 package dao;
 
 import entities.Book;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Date;
-
+import java.sql.*;
+import java.time.*;
+import java.util.*;
 /**
  *
  * @author Lenovo
@@ -26,7 +17,7 @@ public class DaoBook {
 
     public void addBook(Book book) throws SQLException {
 
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BookStore", "root", "");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
         System.out.println(conn + " Connected successfully");
 
         PreparedStatement st = null;
@@ -48,9 +39,8 @@ public class DaoBook {
     }
 
     public List<Book> listbooks() throws SQLException {
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BookStore", "root", "");
-        System.out.println(conn + " Connected successfully");
-        
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
+     
         Statement st = conn.createStatement();
         String sql = "select * from book";
         ResultSet rs = st.executeQuery(sql);
