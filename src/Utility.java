@@ -1,10 +1,11 @@
+
 import java.util.Scanner;
 
 public class Utility {
 
-public float calculateTotalPrice(int qte, float unitPrice) {
-	
-	return  qte*unitPrice;
-	
-}
+    public double calculateTotalPrice(int qte, double unitPrice) {
+
+        return qte * unitPrice;
+
+    }
 }
