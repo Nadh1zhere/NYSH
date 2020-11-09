@@ -1,41 +1,74 @@
-package DAO;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package dao;
 
 import entities.Book;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Date;
 
-public class DAOBook {
-	private int totalBooks;
-	private Book[] books;
-	public DAOBook() {
-		totalBooks = 0;
-		books = new Book[100];
+/**
+ *
+ * @author Lenovo
+ */
+public class DaoBook {
 
-	   
-	    }
-public void addNewBook(Book b) {
-    if(totalBooks< books.length) {
-        books[totalBooks] = b;
-        totalBooks++;
+    public void addBook(Book book) throws SQLException {
 
-    }
-    else
-    {
-        System.out.println("book is not found in the store");
-    }
-}
-    public void listBooks()
-    {
-        int i;
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BookStore", "root", "");
+        System.out.println(conn + " Connected successfully");
 
-        System.out.println(" This is the list of books available");
-        for (i = 0; i < totalBooks; i++)
-        {
-            System.out.println(books[i]);
+        PreparedStatement st = null;
+        String sql = "insert into book (title,price,author,releaseDate) values(?,?,?,?)";
+        st = conn.prepareStatement(sql);
+        st.setString(1, book.getTitle());
+        st.setDouble(2, book.getPrice());
+        st.setString(3, book.getAuthor());
+        st.setDate(4, java.sql.Date.valueOf(book.getReleaseDate()));
+        int result = st.executeUpdate();
+        if (result == 1) {
+            System.out.println("INSERTED SUCCESSFULLY");
+        } else {
+            System.out.println("ERROR CHECK YOUR CODE");
         }
-        System.out.println();
+        st.close();
+        conn.close();
+
     }
 
-
+    public List<Book> listbooks() throws SQLException {
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/BookStore", "root", "");
+        System.out.println(conn + " Connected successfully");
+        
+        Statement st = conn.createStatement();
+        String sql = "select * from book";
+        ResultSet rs = st.executeQuery(sql);
+        
+        List <Book> listbooks= new ArrayList();
+        while(rs.next())
+        {
+            Book newbook = new Book();
+            newbook.setId(rs.getInt("id"));
+            newbook.setTitle(rs.getString("title"));
+            newbook.setPrice(rs.getDouble("price"));
+            newbook.setAuthor(rs.getString("author"));
+            LocalDate date = rs.getDate("releaseDate").toLocalDate();
+            newbook.setReleaseDate(date);
+            listbooks.add(newbook);
+        }
+        return listbooks;
+    }
+    
+   
 }
-
-
-

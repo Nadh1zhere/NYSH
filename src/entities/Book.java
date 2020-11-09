@@ -27,6 +27,14 @@ public class Book {
         this.author = author;
         this.releaseDate = releaseDate;
     }
+     public Book(String title, double price, String author, LocalDate releaseDate) {
+        
+        this.title = title;
+        this.price = price;
+        this.author = author;
+        this.releaseDate = releaseDate;
+    }
+    public Book(){}
 
     public int getId() {
         return id;
