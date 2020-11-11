@@ -6,9 +6,14 @@
 package dao;
 
 import entities.Book;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.sql.*;
 import java.time.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -72,6 +77,31 @@ public class DaoBook {
         conn.close();
         return result;
     }
+     public int addBookwithimage(Book book) throws SQLException, FileNotFoundException {
+
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
+        System.out.println(conn + " Connected successfully");
+    
+        PreparedStatement st = null;
+        String sql = "insert into book (title,price,author,releaseDate,image) values(?,?,?,?,?)";
+        st = conn.prepareStatement(sql);
+        st.setString(1, book.getTitle());
+        st.setDouble(2, book.getPrice());
+        st.setString(3, book.getAuthor());
+        st.setDate(4, java.sql.Date.valueOf(book.getReleaseDate()));
+        String pathimg=book.getImage();
+        InputStream  in = new FileInputStream(pathimg);
+        st.setBlob(5,in);
+        int result = st.executeUpdate();
+        if (result == 1) {
+            System.out.println("INSERTED SUCCESSFULLY");
+        } else {
+            System.out.println("ERROR CHECK YOUR CODE");
+        }
+        st.close();
+        conn.close();
+        return result;
+    }
 
     public ArrayList<Book> listbooks() throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
@@ -89,6 +119,7 @@ public class DaoBook {
             newbook.setAuthor(rs.getString("author"));
             LocalDate date = rs.getDate("releaseDate").toLocalDate();
             newbook.setReleaseDate(date);
+            newbook.setImage(rs.getString("image"));
             listbooks.add(newbook);
         }
         st.close();

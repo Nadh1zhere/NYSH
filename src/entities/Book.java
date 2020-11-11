@@ -19,6 +19,7 @@ public class Book {
     private double price;
     private String author;
     private LocalDate releaseDate;
+    private String image;
 
     public Book(int id, String title, double price, String author, LocalDate releaseDate) {
         this.id = id;
@@ -27,6 +28,14 @@ public class Book {
         this.author = author;
         this.releaseDate = releaseDate;
     }
+     public Book(int id, String title, double price, String author, LocalDate releaseDate,String image) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.author = author;
+        this.releaseDate = releaseDate;
+        this.image=image;
+    }
      public Book(String title, double price, String author, LocalDate releaseDate) {
         
         this.title = title;
@@ -34,8 +43,18 @@ public class Book {
         this.author = author;
         this.releaseDate = releaseDate;
     }
+     public Book(String title, double price, String author, LocalDate releaseDate,String image){
+          this.title = title;
+        this.price = price;
+        this.author = author;
+        this.releaseDate = releaseDate;
+        this.image=image;
+     }
     public Book(){}
-
+    
+    public String getImage(){
+         return image;
+        }
     public int getId() {
         return id;
     }
@@ -54,6 +73,9 @@ public class Book {
 
     public LocalDate getReleaseDate() {
         return releaseDate;
+    }
+    public void setImage(String image){
+        this.image=image;
     }
 
     public void setId(int id) {

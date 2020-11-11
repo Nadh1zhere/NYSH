@@ -42,7 +42,7 @@ public class Listbooks extends javax.swing.JFrame {
         DaoBook d = new DaoBook();
     ArrayList<Book> listbook = d.listbooks();
     DefaultTableModel model = (DefaultTableModel) jTable_display_books.getModel();
-    Object [] row = new Object[5];
+    Object [] row = new Object[6];
     for(int i=0;i<listbook.size();i++)
     {
         row[0]=listbook.get(i).getId();
@@ -50,6 +50,7 @@ public class Listbooks extends javax.swing.JFrame {
         row[2]=listbook.get(i).getPrice();
         row[3]=listbook.get(i).getAuthor();
         row[4]=listbook.get(i).getReleaseDate();
+        row[5]=listbook.get(i).getImage();
         model.addRow(row);
     }
     }
@@ -90,7 +91,7 @@ public class Listbooks extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "TITLE", "PRICE", "AUTHOR", "RELEASE_DATE"
+                "ID", "TITLE", "PRICE", "AUTHOR", "RELEASE_DATE", "IMAGE"
             }
         ));
         jScrollPane1.setViewportView(jTable_display_books);

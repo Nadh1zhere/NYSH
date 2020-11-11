@@ -9,6 +9,7 @@ import entities.Book;
 import gui.*;
 import gui.Listbooks;
 import gui.Menu;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -23,14 +24,25 @@ import java.time.format.DateTimeFormatter;
  */
 public class Main {
 
-    public static void main(String[] args) throws SQLException, InterruptedException {
+    public static void main(String[] args) throws SQLException, InterruptedException, FileNotFoundException {
        /* 
         Interfaceformulaire interfaceajout = new Interfaceformulaire();
         
         interfaceajout.runme(); */
         
-        Home h = new Home();
-        h.runme();
+       Home h = new Home();
+       h.runme();
+        
+        /*DaoBook d = new DaoBook();
+        String dates ="2020-11-11";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
+        //convert String to LocalDate
+        LocalDate localDate = LocalDate.parse(dates, formatter);
+       
+        Book b = new Book("title",10.2,"ramzi",localDate,"C:\\Users\\Lenovo\\Desktop\\NSYH.png");
+        
+        
+        d.addBookwithimage(b);*/
      
         
         
