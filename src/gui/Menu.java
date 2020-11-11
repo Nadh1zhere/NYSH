@@ -36,36 +36,50 @@ public class Menu extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         listbook = new javax.swing.JButton();
         addbook1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(25, 11, 66));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(25, 11, 66));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Perpetua Titling MT", 0, 48)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 48)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("MENU");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(276, 41, 284, 63));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, 310, 63));
 
-        listbook.setFont(new java.awt.Font("Berlin Sans FB", 0, 36)); // NOI18N
-        listbook.setText("LIST ALL BOOKS");
+        listbook.setFont(new java.awt.Font("Segoe UI Light", 0, 36)); // NOI18N
+        listbook.setForeground(new java.awt.Color(25, 11, 66));
+        listbook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/menu_squared_60px.png"))); // NOI18N
+        listbook.setText("LIST ALL BOOKS ");
+        listbook.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         listbook.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listbookActionPerformed(evt);
             }
         });
-        jPanel1.add(listbook, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 330, 100));
+        jPanel1.add(listbook, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, 360, 100));
 
-        addbook1.setFont(new java.awt.Font("Berlin Sans FB", 0, 36)); // NOI18N
-        addbook1.setText("ADD A BOOK");
+        addbook1.setFont(new java.awt.Font("Segoe UI Light", 0, 36)); // NOI18N
+        addbook1.setForeground(new java.awt.Color(25, 11, 66));
+        addbook1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/plus_60px.png"))); // NOI18N
+        addbook1.setText("ADD A BOOK     ");
+        addbook1.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         addbook1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addbook1ActionPerformed(evt);
             }
         });
-        jPanel1.add(addbook1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 330, 100));
+        jPanel1.add(addbook1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, 360, 100));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 810, 480));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/NSYH.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 410, 490));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 540));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -129,6 +143,7 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addbook1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton listbook;

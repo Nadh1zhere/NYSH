@@ -16,7 +16,7 @@ import java.util.*;
  */
 public class DaoBook {
 
-    public void updatebook(Book book,int id) throws SQLException {
+    public void updatebook(Book book) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
         PreparedStatement st = null;
         
@@ -26,7 +26,7 @@ public class DaoBook {
         st.setDouble(2, book.getPrice());
         st.setString(3, book.getAuthor());
         st.setDate(4, java.sql.Date.valueOf(book.getReleaseDate()));
-        st.setInt(5, id);
+        st.setInt(5, book.getId());
         int result = st.executeUpdate();
         if (result == 1) {
             System.out.println("Data has been modified Successfully");
@@ -36,20 +36,17 @@ public class DaoBook {
         st.close();
         conn.close();
     }
-    public void deletebook(int id) throws SQLException {
+    public int deletebook(int id) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
         PreparedStatement st = null;
         String sql = "delete from book where id = ? ";
         st = conn.prepareStatement(sql);
         st.setInt(1,id);
         int result = st.executeUpdate();
-        if (result == 1) {
-            System.out.println("Data has been deleted Successfully");
-        } else {
-            System.out.println("failed to delete data ! error!");
-        }
+       
         st.close();
         conn.close();
+        return result;
     }
     
 
@@ -94,7 +91,27 @@ public class DaoBook {
             newbook.setReleaseDate(date);
             listbooks.add(newbook);
         }
+        st.close();
+        conn.close();
         return listbooks;
     }
+    public Book getmybook(int id) throws SQLException {
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
+        Book newbook = new Book();
+        Statement st = conn.createStatement();
+        String sql = "select * from book where id= "+id;
+        ResultSet rs = st.executeQuery(sql);
+
+        while (rs.next()) {
+            newbook.setId(rs.getInt("id"));
+            newbook.setTitle(rs.getString("title"));
+            newbook.setPrice(rs.getDouble("price"));
+            newbook.setAuthor(rs.getString("author"));
+            LocalDate date = rs.getDate("releaseDate").toLocalDate();
+            newbook.setReleaseDate(date);
+        }
+        return newbook;
+    }
+
 
 }

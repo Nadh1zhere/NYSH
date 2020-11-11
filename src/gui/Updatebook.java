@@ -28,14 +28,18 @@ public class Updatebook extends javax.swing.JFrame {
      */
     public Updatebook() {
         initComponents();
-        try {
-            id.setEditable(false);
-            show_books();
-        } catch (SQLException ex) {
-            Logger.getLogger(Updatebook.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        id.setEditable(false);
     }
 
+       public void recuperer(Book b)
+       {
+           id.setText(String.valueOf(b.getId()));
+           title.setText(b.getTitle());
+           price.setText(String.valueOf(b.getPrice()));
+           author.setText(b.getAuthor());
+           date.setText(String.valueOf(b.getReleaseDate()));
+           
+       }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -46,8 +50,6 @@ public class Updatebook extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable_display_books = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -64,176 +66,148 @@ public class Updatebook extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         menu = new javax.swing.JButton();
         listbooks = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(25, 11, 66));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable_display_books.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "TITLE", "PRICE", "AUTHOR", "RELEASE_DATE"
-            }
-        ));
-        jTable_display_books.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable_display_booksMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTable_display_books);
-
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, 440, 430));
-
+        jPanel2.setBackground(new java.awt.Color(25, 11, 66));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("RELEASE DATE:");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 120, 30));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 200, 30));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("ID :");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 50, 30));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 50, 30));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("TITLE :");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 50, 30));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 50, 30));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("PRICE :");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 50, 30));
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 60, 30));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("AUTHOR :");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 80, 30));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 80, 30));
 
-        reset.setText("RESET");
+        reset.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        reset.setForeground(new java.awt.Color(25, 11, 66));
+        reset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/sync_50px.png"))); // NOI18N
+        reset.setText("RESET     ");
+        reset.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         reset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resetActionPerformed(evt);
             }
         });
-        jPanel2.add(reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 310, 120, 40));
+        jPanel2.add(reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 220, 60));
 
         date.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dateActionPerformed(evt);
             }
         });
-        jPanel2.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 160, 30));
+        jPanel2.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 160, 30));
 
         id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idActionPerformed(evt);
             }
         });
-        jPanel2.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 40, 160, 30));
+        jPanel2.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 40, 160, 30));
 
         title.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 titleActionPerformed(evt);
             }
         });
-        jPanel2.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 160, 30));
+        jPanel2.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 160, 30));
 
         price.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 priceActionPerformed(evt);
             }
         });
-        jPanel2.add(price, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 160, 30));
+        jPanel2.add(price, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 160, 30));
 
         author.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 authorActionPerformed(evt);
             }
         });
-        jPanel2.add(author, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 160, 30));
+        jPanel2.add(author, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 160, 30));
 
-        update.setText("UPDATE");
+        update.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        update.setForeground(new java.awt.Color(25, 11, 66));
+        update.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/edit_property_50px.png"))); // NOI18N
+        update.setText("UPDATE   ");
+        update.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         update.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateActionPerformed(evt);
             }
         });
-        jPanel2.add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, 120, 40));
+        jPanel2.add(update, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 290, 220, 60));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, 300, 430));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 340, 430));
 
-        jLabel6.setFont(new java.awt.Font("Berlin Sans FB", 0, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("UPDATE BOOK");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 340, 30));
+        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, 340, 30));
 
+        menu.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        menu.setForeground(new java.awt.Color(25, 11, 66));
+        menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/home_60px.png"))); // NOI18N
         menu.setText("MENU");
+        menu.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         menu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuActionPerformed(evt);
             }
         });
-        jPanel1.add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, 90, -1));
+        jPanel1.add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 150, 60));
 
+        listbooks.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        listbooks.setForeground(new java.awt.Color(25, 11, 66));
+        listbooks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/menu_squared_60px.png"))); // NOI18N
         listbooks.setText("LIST BOOKS");
+        listbooks.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         listbooks.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 listbooksActionPerformed(evt);
             }
         });
-        jPanel1.add(listbooks, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+        jPanel1.add(listbooks, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, 190, 60));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 830, 510));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/NSYH.png"))); // NOI18N
+        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 380, 430));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 830, 510));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void dateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dateActionPerformed
-
-    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
-        // TODO add your handling code here:
-        id.setEditable(false);
-    }//GEN-LAST:event_idActionPerformed
-
-    private void titleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_titleActionPerformed
-
-    private void priceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_priceActionPerformed
-
-    private void authorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_authorActionPerformed
-
-    private void jTable_display_booksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_display_booksMouseClicked
-
-        // TODO add your handling code here:
-        int i = jTable_display_books.getSelectedRow();
-        TableModel model = jTable_display_books.getModel();
-        id.setText(model.getValueAt(i,0).toString());
-        title.setText(model.getValueAt(i,1).toString());
-        price.setText(model.getValueAt(i,2).toString());
-        author.setText(model.getValueAt(i,3).toString());
-        date.setText(model.getValueAt(i,4).toString());
-    }//GEN-LAST:event_jTable_display_booksMouseClicked
-
-    private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
-        // TODO add your handling code here:
-        id.setText("");
-        title.setText("");
-        price.setText("");
-        author.setText("");
-        date.setText("");
-    }//GEN-LAST:event_resetActionPerformed
 
     private void menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuActionPerformed
         // TODO add your handling code here:
@@ -254,42 +228,59 @@ public class Updatebook extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             Book b = new Book();
-            int row = jTable_display_books.getSelectedRow();
-            String value = jTable_display_books.getModel().getValueAt(row, 0).toString();
-            int idx = Integer.parseInt(value);
+
             b.setTitle(title.getText());
             b.setPrice(Double.parseDouble(price.getText()));
             b.setAuthor(author.getText());
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
             String datex = date.getText();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate localDate = LocalDate.parse(datex, formatter);
             b.setReleaseDate(localDate);
+            b.setId(Integer.parseInt(id.getText()));
             DaoBook d = new DaoBook();
-            d.updatebook(b, idx);
-            DefaultTableModel model = (DefaultTableModel) jTable_display_books.getModel();
-            model.setRowCount(0);
-            show_books();
+            d.updatebook(b);
+
             JOptionPane.showMessageDialog(null,"UPDATED SUCCESSFULLY");
         } catch (SQLException ex) {
             Logger.getLogger(Updatebook.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        Listbooks l = new Listbooks();
+        l.setVisible(true);
+        setVisible(false);
+
     }//GEN-LAST:event_updateActionPerformed
-    public void show_books() throws SQLException{
-        DaoBook d = new DaoBook();
-    ArrayList<Book> listbook = d.listbooks();
-    DefaultTableModel model = (DefaultTableModel) jTable_display_books.getModel();
-    Object [] row = new Object[5];
-    for(int i=0;i<row.length;i++)
-    {
-        row[0]=listbook.get(i).getId();
-        row[1]=listbook.get(i).getTitle();
-        row[2]=listbook.get(i).getPrice();
-        row[3]=listbook.get(i).getAuthor();
-        row[4]=listbook.get(i).getReleaseDate();
-        model.addRow(row);
-    }
-    }
+
+    private void authorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_authorActionPerformed
+
+    private void priceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_priceActionPerformed
+
+    private void titleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_titleActionPerformed
+
+    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
+        // TODO add your handling code here:
+        id.setEditable(false);
+    }//GEN-LAST:event_idActionPerformed
+
+    private void dateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dateActionPerformed
+
+    private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
+        // TODO add your handling code here:
+        id.setText("");
+        title.setText("");
+        price.setText("");
+        author.setText("");
+        date.setText("");
+    }//GEN-LAST:event_resetActionPerformed
+       
     /**
      * @param args the command line arguments
      */
@@ -335,10 +326,9 @@ public class Updatebook extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable_display_books;
     private javax.swing.JButton listbooks;
     private javax.swing.JButton menu;
     private javax.swing.JTextField price;

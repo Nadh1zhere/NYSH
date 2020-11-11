@@ -29,9 +29,9 @@ public class Main {
         
         interfaceajout.runme(); */
         
-        
-     Menu m = new Menu();
-      m.runme();
+        Home h = new Home();
+        h.runme();
+     
         
         
       /*  String ld = "20/10/2020";

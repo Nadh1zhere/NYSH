@@ -38,188 +38,147 @@ public class Interfaceformulaire extends javax.swing.JFrame {
         menu = new javax.swing.JButton();
         reset = new javax.swing.JButton();
         Buttonajouter = new javax.swing.JButton();
-        jSeparator4 = new javax.swing.JSeparator();
         author = new javax.swing.JTextField();
-        jSeparator3 = new javax.swing.JSeparator();
         price = new javax.swing.JTextField();
-        jSeparator2 = new javax.swing.JSeparator();
         date = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
         title = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setBackground(new java.awt.Color(25, 11, 66));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        menu.setFont(new java.awt.Font("Berlin Sans FB", 0, 18)); // NOI18N
+        menu.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        menu.setForeground(new java.awt.Color(25, 11, 66));
+        menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/home_60px.png"))); // NOI18N
         menu.setText("MENU");
+        menu.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         menu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuActionPerformed(evt);
             }
         });
-        jPanel1.add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 80, 30));
+        jPanel1.add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 60));
 
-        reset.setText("Reset");
+        reset.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        reset.setForeground(new java.awt.Color(25, 11, 66));
+        reset.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/sync_50px.png"))); // NOI18N
+        reset.setText("Reset      ");
+        reset.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         reset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resetActionPerformed(evt);
             }
         });
-        jPanel1.add(reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 410, 160, -1));
+        jPanel1.add(reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 410, 200, 60));
 
+        Buttonajouter.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        Buttonajouter.setForeground(new java.awt.Color(25, 11, 66));
+        Buttonajouter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/plus_60px.png"))); // NOI18N
         Buttonajouter.setText("Add Book");
+        Buttonajouter.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         Buttonajouter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonajouterActionPerformed(evt);
             }
         });
-        jPanel1.add(Buttonajouter, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, 160, -1));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 290, 310, 20));
+        jPanel1.add(Buttonajouter, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 340, 200, 60));
 
         author.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         author.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        author.setText("Enter author here");
-        author.setBorder(null);
         author.setOpaque(false);
         author.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 authorActionPerformed(evt);
             }
         });
-        jPanel1.add(author, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 250, 230, 40));
-        jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 220, 310, 20));
+        jPanel1.add(author, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 220, 230, 40));
 
         price.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         price.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        price.setText("Enter price here");
-        price.setBorder(null);
         price.setOpaque(false);
         price.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 priceActionPerformed(evt);
             }
         });
-        jPanel1.add(price, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 180, 230, 40));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 380, 310, 20));
+        jPanel1.add(price, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 160, 230, 40));
 
         date.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         date.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        date.setText("Enter Date here");
-        date.setBorder(null);
         date.setOpaque(false);
         date.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dateActionPerformed(evt);
             }
         });
-        jPanel1.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 340, 310, 40));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 290, 20));
+        jPanel1.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, 230, 40));
 
         title.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         title.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        title.setText("Enter title here");
-        title.setBorder(null);
         title.setOpaque(false);
         title.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 titleActionPerformed(evt);
             }
         });
-        jPanel1.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 110, 230, 40));
+        jPanel1.add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 100, 230, 40));
 
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel10.setFont(new java.awt.Font("Berlin Sans FB", 0, 36)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Segoe UI Light", 0, 36)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("ADD A BOOK");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 30, 250, -1));
 
-        jLabel9.setFont(new java.awt.Font("Berlin Sans FB", 0, 20)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Segoe UI Light", 0, 20)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Release Date (format) : dd/mm/yyyy");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 300, 330, 40));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Release Date:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 330, 40));
 
-        jLabel8.setFont(new java.awt.Font("Berlin Sans FB", 0, 20)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Segoe UI Light", 0, 20)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Author :");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 220, 80, 40));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 220, 80, 40));
 
-        jLabel7.setFont(new java.awt.Font("Berlin Sans FB", 0, 20)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Segoe UI Light", 0, 20)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Price :");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 150, 60, 40));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 60, 40));
 
-        jLabel6.setFont(new java.awt.Font("Berlin Sans FB", 0, 20)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI Light", 0, 20)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Title :");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 80, 60, 40));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 100, 60, 40));
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Berlin Sans FB", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Welcome to ");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 250, -1));
-
-        jLabel4.setFont(new java.awt.Font("Tw Cen MT", 2, 36)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setText("NYSH");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 240, 100));
-
-        jLabel5.setFont(new java.awt.Font("Berlin Sans FB", 0, 36)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("BookStore");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 210, 80));
-
+        jLabel2.setForeground(new java.awt.Color(25, 11, 66));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/right.jpg"))); // NOI18N
-        jLabel2.setText("jLabel1");
         jLabel2.setAutoscrolls(true);
-        jLabel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), null, new java.awt.Color(0, 0, 0)));
         jLabel2.setPreferredSize(new java.awt.Dimension(350, 600));
         jLabel2.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentMoved(java.awt.event.ComponentEvent evt) {
                 jLabel2ComponentMoved(evt);
             }
         });
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 20, 370, 460));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 400, 470));
 
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/lab.jpg"))); // NOI18N
-        jLabel3.setText("jLabel1");
-        jLabel3.setAutoscrolls(true);
-        jLabel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 0), new java.awt.Color(0, 0, 0), null, new java.awt.Color(0, 0, 0)));
-        jLabel3.setPreferredSize(new java.awt.Dimension(350, 600));
-        jLabel3.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentMoved(java.awt.event.ComponentEvent evt) {
-                jLabel3ComponentMoved(evt);
-            }
-        });
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 420, 460));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/NSYH.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 390, 470));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 850, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jLabel2ComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jLabel2ComponentMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel2ComponentMoved
-
-    private void jLabel3ComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jLabel3ComponentMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel3ComponentMoved
 
     private void titleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titleActionPerformed
         // TODO add your handling code here:
@@ -254,7 +213,7 @@ public class Interfaceformulaire extends javax.swing.JFrame {
         newbook.setTitle(titre);
         newbook.setAuthor(auteur);
         newbook.setPrice(prix);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
         //convert String to LocalDate
         LocalDate localDate = LocalDate.parse(dates, formatter);
         newbook.setReleaseDate(localDate);
@@ -292,6 +251,10 @@ public class Interfaceformulaire extends javax.swing.JFrame {
         m.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_menuActionPerformed
+
+    private void jLabel2ComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jLabel2ComponentMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel2ComponentMoved
 
     /**
      * @param args the command line arguments
@@ -335,18 +298,11 @@ public class Interfaceformulaire extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JButton menu;
     private javax.swing.JTextField price;
     private javax.swing.JButton reset;
