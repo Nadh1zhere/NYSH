@@ -6,6 +6,9 @@ import static java.time.Clock.system;
 import java.util.List;
 import java.util.Scanner;
 import entities.Book;
+import gui.*;
+import gui.Listbooks;
+import gui.Menu;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -21,7 +24,26 @@ import java.time.format.DateTimeFormatter;
 public class Main {
 
     public static void main(String[] args) throws SQLException, InterruptedException {
-
+       /* 
+        Interfaceformulaire interfaceajout = new Interfaceformulaire();
+        
+        interfaceajout.runme(); */
+        
+        
+     Menu m = new Menu();
+      m.runme();
+        
+        
+      /*  String ld = "20/10/2020";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate localDate = LocalDate.parse(ld, formatter);
+        Book book = new Book("rashford",3.9,"manu",localDate);*/
+        
+      /*  
+        DaoBook d = new DaoBook();
+        d.deletebook(5);*/
+        
+        
        /* Scanner scannerInt = new Scanner(System.in);
         System.out.println("Veuillez saisir la quantitÃ© ");
         int quantite = scannerInt.nextInt();
@@ -34,7 +56,7 @@ public class Main {
 
         System.out.println("Le prix total est " + utility.calculateTotalPrice(quantite, prixUnitaire));*/
         
-        
+      /*  
         int choix = 1;
         
         while (choix != 0) {
@@ -79,7 +101,7 @@ public class Main {
                       Scanner scannerReleaseDate = new Scanner(System.in);
                       String releaseDateBook = scannerReleaseDate.nextLine();
                       //LocalDate d1 = java.sql.Date.valueOf(releaseDateBook);
-                      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+                      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                        LocalDate localDate = LocalDate.parse(releaseDateBook, formatter);
                       
                       Book b1 = new Book (titleBook,priceBook,authorBook,localDate);
@@ -104,6 +126,7 @@ public class Main {
                             break;
 
     }
-}
+}*/
+            
     }
 }

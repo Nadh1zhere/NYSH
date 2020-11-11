@@ -9,13 +9,51 @@ import entities.Book;
 import java.sql.*;
 import java.time.*;
 import java.util.*;
+
 /**
  *
  * @author Lenovo
  */
 public class DaoBook {
 
-    public void addBook(Book book) throws SQLException {
+    public void updatebook(Book book,int id) throws SQLException {
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
+        PreparedStatement st = null;
+        
+        String sql = "UPDATE book SET title = ?,price = ?,author = ?,releaseDate = ? where id= ?";
+        st = conn.prepareStatement(sql);
+        st.setString(1, book.getTitle());
+        st.setDouble(2, book.getPrice());
+        st.setString(3, book.getAuthor());
+        st.setDate(4, java.sql.Date.valueOf(book.getReleaseDate()));
+        st.setInt(5, id);
+        int result = st.executeUpdate();
+        if (result == 1) {
+            System.out.println("Data has been modified Successfully");
+        } else {
+            System.out.println("failed to update data ! error!");
+        }
+        st.close();
+        conn.close();
+    }
+    public void deletebook(int id) throws SQLException {
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
+        PreparedStatement st = null;
+        String sql = "delete from book where id = ? ";
+        st = conn.prepareStatement(sql);
+        st.setInt(1,id);
+        int result = st.executeUpdate();
+        if (result == 1) {
+            System.out.println("Data has been deleted Successfully");
+        } else {
+            System.out.println("failed to delete data ! error!");
+        }
+        st.close();
+        conn.close();
+    }
+    
+
+    public int addBook(Book book) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
         System.out.println(conn + " Connected successfully");
@@ -35,19 +73,18 @@ public class DaoBook {
         }
         st.close();
         conn.close();
-
+        return result;
     }
 
-    public List<Book> listbooks() throws SQLException {
+    public ArrayList<Book> listbooks() throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
-     
+
         Statement st = conn.createStatement();
         String sql = "select * from book";
         ResultSet rs = st.executeQuery(sql);
-        
-        List <Book> listbooks= new ArrayList();
-        while(rs.next())
-        {
+
+        ArrayList<Book> listbooks = new ArrayList();
+        while (rs.next()) {
             Book newbook = new Book();
             newbook.setId(rs.getInt("id"));
             newbook.setTitle(rs.getString("title"));
@@ -59,6 +96,5 @@ public class DaoBook {
         }
         return listbooks;
     }
-    
-   
+
 }
