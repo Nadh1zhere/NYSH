@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package gui;
-import dao.DaoBook;
+import DAO.DaoBook;
 import entities.Book;
 import java.sql.SQLException;
 import java.time.LocalDate;
