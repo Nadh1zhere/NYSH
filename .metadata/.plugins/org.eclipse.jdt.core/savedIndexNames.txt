@@ -1,1 +1,0 @@
-INDEX VERSION 1.131+C:\Users\Siwar\eclipse-workspace\BookStore\.metadata\.plugins\org.eclipse.jdt.core
