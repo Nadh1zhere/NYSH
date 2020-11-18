@@ -25,13 +25,14 @@ public class DaoBook {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
         PreparedStatement st = null;
         
-        String sql = "UPDATE book SET title = ?,price = ?,author = ?,releaseDate = ? where id= ?";
+        String sql = "UPDATE book SET title = ?,price = ?,author = ?,releaseDate = ? ,image= ? where id= ?";
         st = conn.prepareStatement(sql);
         st.setString(1, book.getTitle());
         st.setDouble(2, book.getPrice());
         st.setString(3, book.getAuthor());
         st.setDate(4, java.sql.Date.valueOf(book.getReleaseDate()));
         st.setInt(5, book.getId());
+        st.setBytes(6, book.getImg());
         int result = st.executeUpdate();
         if (result == 1) {
             System.out.println("Data has been modified Successfully");
@@ -103,7 +104,7 @@ public class DaoBook {
         return result;
     }
 
-    public ArrayList<Book> listbooks() throws SQLException {
+    public static ArrayList<Book> listbooks() throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
 
         Statement st = conn.createStatement();
@@ -119,14 +120,14 @@ public class DaoBook {
             newbook.setAuthor(rs.getString("author"));
             LocalDate date = rs.getDate("releaseDate").toLocalDate();
             newbook.setReleaseDate(date);
-            newbook.setImage(rs.getString("image"));
+            newbook.setImg(rs.getBytes("image"));
             listbooks.add(newbook);
         }
         st.close();
         conn.close();
         return listbooks;
     }
-    public Book getmybook(int id) throws SQLException {
+    public static Book getmybook(int id) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
         Book newbook = new Book();
         Statement st = conn.createStatement();
@@ -140,6 +141,7 @@ public class DaoBook {
             newbook.setAuthor(rs.getString("author"));
             LocalDate date = rs.getDate("releaseDate").toLocalDate();
             newbook.setReleaseDate(date);
+            newbook.setImg(rs.getBytes("image"));
         }
         return newbook;
     }
