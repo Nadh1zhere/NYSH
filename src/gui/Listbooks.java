@@ -5,12 +5,14 @@
  */
 package gui;
 
-import dao.DaoBook;
+import DAO.DaoBook;
 import entities.Book;
+import java.awt.Image;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -41,17 +43,28 @@ public class Listbooks extends javax.swing.JFrame {
     public void show_books() throws SQLException{
         DaoBook d = new DaoBook();
     ArrayList<Book> listbook = d.listbooks();
-    DefaultTableModel model = (DefaultTableModel) jTable_display_books.getModel();
-    Object [] row = new Object[6];
+    String [] columnname={"ID","TITLE","PRICE","AUTHOR","DATE","IMAGE"};
+    Object [][] row = new Object [listbook.size()][6];
     for(int i=0;i<listbook.size();i++)
     {
-        row[0]=listbook.get(i).getId();
-        row[1]=listbook.get(i).getTitle();
-        row[2]=listbook.get(i).getPrice();
-        row[3]=listbook.get(i).getAuthor();
-        row[4]=listbook.get(i).getReleaseDate();
-        row[5]=listbook.get(i).getImage();
-        model.addRow(row);
+        row [i][0]=listbook.get(i).getId();
+        row [i][1]=listbook.get(i).getTitle();
+        row [i][2]=listbook.get(i).getPrice();
+        row [i][3]=listbook.get(i).getAuthor();
+        row [i][4]=listbook.get(i).getReleaseDate();
+        if(listbook.get(i).getImg()!=null)
+        {
+            ImageIcon  image = new ImageIcon(new ImageIcon(listbook.get(i).getImg()).getImage()
+                    .getScaledInstance(150,100,Image.SCALE_SMOOTH));
+            row [i][5]=image;
+        }else {
+            row [i][5]=null;
+        }
+        
+        TheModel model = new TheModel(columnname,row);
+        jTable_display_books.setModel(model);
+        jTable_display_books.setRowHeight(50);
+        jTable_display_books.getColumnModel().getColumn(5).setPreferredWidth(50);
     }
     }
 
@@ -70,8 +83,8 @@ public class Listbooks extends javax.swing.JFrame {
         jTable_display_books = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        menu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -122,23 +135,23 @@ public class Listbooks extends javax.swing.JFrame {
         });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 430, 240, 60));
 
-        jButton3.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(25, 11, 66));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/home_60px.png"))); // NOI18N
-        jButton3.setText("MENU");
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 60));
-
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/NSYH.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 300, 380));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 300, 360));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 810, 500));
+        menu.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        menu.setForeground(new java.awt.Color(25, 11, 66));
+        menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/previous_60px.png"))); // NOI18N
+        menu.setText("PREVIOUS");
+        menu.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        menu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuActionPerformed(evt);
+            }
+        });
+        jPanel1.add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 60));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 830, 530));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -160,13 +173,6 @@ public class Listbooks extends javax.swing.JFrame {
         u.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        Menu m = new Menu();
-        m.setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {                                         
@@ -192,6 +198,13 @@ public class Listbooks extends javax.swing.JFrame {
             Logger.getLogger(Listbooks.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuActionPerformed
+        // TODO add your handling code here:
+        Menu m = new Menu();
+        m.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_menuActionPerformed
     
     /**
      * @param args the command line arguments
@@ -233,12 +246,12 @@ public class Listbooks extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable_display_books;
+    private javax.swing.JButton menu;
     // End of variables declaration//GEN-END:variables
 
     
