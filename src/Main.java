@@ -1,4 +1,3 @@
-
 import dao.DaoBook;
 import entities.Book;
 import java.sql.*;
@@ -59,13 +58,10 @@ public class Main {
        /* Scanner scannerInt = new Scanner(System.in);
         System.out.println("Veuillez saisir la quantitÃ© ");
         int quantite = scannerInt.nextInt();
-
         Scanner scannerFloat = new Scanner(System.in);
         System.out.println("Veuillez saisir le prix unitaire");
         float prixUnitaire = scannerFloat.nextFloat();
-
         Utility utility = new Utility();
-
         System.out.println("Le prix total est " + utility.calculateTotalPrice(quantite, prixUnitaire));*/
         
       /*  
@@ -136,7 +132,6 @@ public class Main {
                             System.out.println("Au revoir à la prochaine ! 0");
                         System.out.println("************************************************");
                             break;
-
     }
 }*/
             

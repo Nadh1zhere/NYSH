@@ -20,7 +20,17 @@ public class Book {
     private String author;
     private LocalDate releaseDate;
     private String image;
+    private byte[] img;
 
+    public Book(String title, double price, String author, LocalDate releaseDate, byte[] img) {
+        this.title = title;
+        this.price = price;
+        this.author = author;
+        this.releaseDate = releaseDate;
+        this.img = img;
+    }
+
+    
     public Book(int id, String title, double price, String author, LocalDate releaseDate) {
         this.id = id;
         this.title = title;
@@ -50,7 +60,16 @@ public class Book {
         this.releaseDate = releaseDate;
         this.image=image;
      }
+     
     public Book(){}
+
+    public byte[] getImg() {
+        return img;
+    }
+
+    public void setImg(byte[] img) {
+        this.img = img;
+    }
     
     public String getImage(){
          return image;
