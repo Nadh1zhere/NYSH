@@ -22,15 +22,21 @@ public class Commande {
     private String detail;
 
 
+
+
     public Commande() {
        
 
+ 
     public Commande(Date datecommande, double prix, int idC, String detail) {
         this.datecommande = datecommande;
         this.prix = prix;
         this.idC = idC;
         this.detail = detail;
+ 
 
+
+ 
     }
 
     public void setDetail(String detail) {
@@ -40,10 +46,13 @@ public class Commande {
     public String getDetail() {
         return detail;
     }
+ 
+
 
 
   
    
+ 
 
     public Commande(int id, Date datecommande, double prix, ArrayList<Book> listbooks, int idC) {
         this.id = id;
@@ -60,7 +69,10 @@ public class Commande {
         this.idC = idC;
     }
     public Commande(){}
+ 
 
+
+ 
 
     public int getId() {
         return id;

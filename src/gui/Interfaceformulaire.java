@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package gui;
-import dao.DaoBook;
+import DAO.DaoBook;
 import entities.Book;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
@@ -36,7 +36,6 @@ public class Interfaceformulaire extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        menu = new javax.swing.JButton();
         reset = new javax.swing.JButton();
         Buttonajouter = new javax.swing.JButton();
         date1 = new javax.swing.JTextField();
@@ -44,6 +43,7 @@ public class Interfaceformulaire extends javax.swing.JFrame {
         author = new javax.swing.JTextField();
         price = new javax.swing.JTextField();
         img = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -51,25 +51,13 @@ public class Interfaceformulaire extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        menu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(25, 11, 66));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        menu.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
-        menu.setForeground(new java.awt.Color(25, 11, 66));
-        menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/home_60px.png"))); // NOI18N
-        menu.setText("MENU");
-        menu.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-        menu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuActionPerformed(evt);
-            }
-        });
-        jPanel1.add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 60));
 
         reset.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         reset.setForeground(new java.awt.Color(25, 11, 66));
@@ -103,7 +91,7 @@ public class Interfaceformulaire extends javax.swing.JFrame {
                 date1ActionPerformed(evt);
             }
         });
-        jPanel1.add(date1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 290, 230, 40));
+        jPanel1.add(date1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 270, 230, 40));
 
         title1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         title1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -143,7 +131,13 @@ public class Interfaceformulaire extends javax.swing.JFrame {
                 imgActionPerformed(evt);
             }
         });
-        jPanel1.add(img, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 340, 230, 40));
+        jPanel1.add(img, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 330, 230, 40));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI Light", 0, 20)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setText("Release Date:");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, 330, 40));
 
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
         jLabel10.setFont(new java.awt.Font("Segoe UI Light", 0, 36)); // NOI18N
@@ -156,7 +150,7 @@ public class Interfaceformulaire extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Image path:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 340, 330, 40));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 330, 40));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI Light", 0, 20)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -186,13 +180,19 @@ public class Interfaceformulaire extends javax.swing.JFrame {
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/NSYH.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 390, 470));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 390, 410));
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI Light", 0, 20)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("Release Date:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 330, 40));
+        menu.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
+        menu.setForeground(new java.awt.Color(25, 11, 66));
+        menu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/previous_60px.png"))); // NOI18N
+        menu.setText("PREVIOUS");
+        menu.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        menu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuActionPerformed(evt);
+            }
+        });
+        jPanel1.add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 60));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 850, 500));
 
@@ -258,13 +258,6 @@ public class Interfaceformulaire extends javax.swing.JFrame {
         title1.setText("");
     }//GEN-LAST:event_resetActionPerformed
 
-    private void menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuActionPerformed
-        // TODO add your handling code here:
-         Menu m = new Menu();
-        m.setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_menuActionPerformed
-
     private void jLabel2ComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jLabel2ComponentMoved
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel2ComponentMoved
@@ -280,6 +273,13 @@ public class Interfaceformulaire extends javax.swing.JFrame {
     private void title1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_title1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_title1ActionPerformed
+
+    private void menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuActionPerformed
+        // TODO add your handling code here:
+        Menu m = new Menu();
+        m.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_menuActionPerformed
 
     /**
      * @param args the command line arguments

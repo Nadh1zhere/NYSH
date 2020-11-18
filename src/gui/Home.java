@@ -107,7 +107,7 @@ public class Home extends javax.swing.JFrame {
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
                 JOptionPane.showMessageDialog(null, "Username and Password Matched");
-                Menu m = new Menu();
+                 MainMenu m = new MainMenu();
                 m.setVisible(true);
                 setVisible(false);
             } else {

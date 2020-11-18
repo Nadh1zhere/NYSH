@@ -17,9 +17,12 @@ public class Client {
     private String tel;
     private String adresse;
  public Client(){}
+ 
+
 
     
 
+ 
     public Client(int id, String nom, String prenom, String email, String tel, String adresse) {
         this.id = id;
         this.nom = nom;

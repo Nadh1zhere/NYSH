@@ -88,7 +88,11 @@ public class DaoCommande {
         LocalDate localDate = LocalDate.parse(dates, formatter);
         ArrayList<Book> lb = DaoBook.listbooks();
 
+ 
+        Commande c = new Commande(java.sql.Date.valueOf(localDate), 10.3, lb, 1);
+
         
+ 
 
         st.setDate(1, Date.valueOf(LocalDate.now()));
         st.setDouble(2, resbook(lb));
