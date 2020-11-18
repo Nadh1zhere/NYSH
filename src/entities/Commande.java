@@ -21,8 +21,16 @@ public class Commande {
     private int idC;
     private String detail;
 
+
     public Commande() {
        
+
+    public Commande(Date datecommande, double prix, int idC, String detail) {
+        this.datecommande = datecommande;
+        this.prix = prix;
+        this.idC = idC;
+        this.detail = detail;
+
     }
 
     public void setDetail(String detail) {
@@ -33,8 +41,26 @@ public class Commande {
         return detail;
     }
 
+
   
    
+
+    public Commande(int id, Date datecommande, double prix, ArrayList<Book> listbooks, int idC) {
+        this.id = id;
+        this.datecommande = datecommande;
+        this.prix = prix;
+        this.listbooks = listbooks;
+        this.idC = idC;
+    }
+    public Commande(Date datecommande, double prix, ArrayList<Book> listbooks, int idC) {
+        
+        this.datecommande = datecommande;
+        this.prix = prix;
+        this.listbooks = listbooks;
+        this.idC = idC;
+    }
+    public Commande(){}
+
 
     public int getId() {
         return id;
@@ -77,6 +103,12 @@ public class Commande {
     }
 
    
+
+    @Override
+    public String toString() {
+        return "Commande{" + "id=" + id + ", datecommande=" + datecommande + ", prix=" + prix + ", listbooks=" + listbooks + ", idC=" + idC + '}'+ ", detail=" +detail;
+    }
+
     
     
 }
