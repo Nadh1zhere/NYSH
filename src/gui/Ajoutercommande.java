@@ -5,8 +5,8 @@
  */
 package gui;
 
-import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
-import DAO.*;
+
+import dao.*;
 import static dao.DaoClient.addclient;
 import static dao.DaoCommande.f;
 
@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListSelectionModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -325,7 +326,19 @@ public class Ajoutercommande extends javax.swing.JFrame {
         }
         String somme = sum.getText();
         try {
-            DaoCommande.add(f(sumid));
+            
+            int result =DaoCommande.add(f(sumid));
+            if(result==1)
+            {
+                  JOptionPane.showMessageDialog(null,"INSERTED SUCCESSFULLY");
+                Menu2 m = new Menu2();
+                m.setVisible(true);
+                setVisible(false);
+                        
+            }else
+            {
+                  JOptionPane.showMessageDialog(null,"FAILED TO INSERT");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Ajoutercommande.class.getName()).log(Level.SEVERE, null, ex);
         }

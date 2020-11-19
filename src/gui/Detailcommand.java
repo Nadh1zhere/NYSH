@@ -6,7 +6,7 @@
 package gui;
 
 import entities.Commande;
-import DAO.*;
+import dao.*;
 
 import entities.Book;
 import java.awt.Image;

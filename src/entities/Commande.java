@@ -24,7 +24,7 @@ public class Commande {
 
 
 
-    public Commande() {
+    public Commande() {}
        
 
  
@@ -34,7 +34,6 @@ public class Commande {
         this.idC = idC;
         this.detail = detail;
  
-
 
  
     }
@@ -68,7 +67,7 @@ public class Commande {
         this.listbooks = listbooks;
         this.idC = idC;
     }
-    public Commande(){}
+
  
 
 

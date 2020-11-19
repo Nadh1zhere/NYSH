@@ -5,7 +5,7 @@
  */
 package gui;
 
-import DAO.DaoBook;
+import dao.DaoBook;
 import dao.DaoCommande;
 import entities.Book;
 import entities.Commande;
