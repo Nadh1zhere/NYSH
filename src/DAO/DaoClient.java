@@ -19,7 +19,18 @@ import java.time.LocalDate;
  *
  * @author Lenovo
  */
+//Classe DaoClient sous le package dao
 public class DaoClient {
+
+    //Methode qui permet d'ajouter un client
+    public static int addclient(Client c) throws SQLException{
+       
+       PreparedStatement st = null;
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
+        System.out.println(conn + " Connected successfully");
+        String sql = "insert into client (nom,prenom,email,tel,adresse) values(?,?,?,?,?)";
+        st = conn.prepareStatement(sql);
+
 
     public static int addclient(Client c) throws SQLException {
         Connection conn = null;

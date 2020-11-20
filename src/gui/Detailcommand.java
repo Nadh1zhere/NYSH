@@ -15,7 +15,9 @@ import java.util.ArrayList;
 import java.util.logging.*;
 
 import javax.swing.ImageIcon;
+
 import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
@@ -40,6 +42,9 @@ public class Detailcommand extends javax.swing.JFrame {
          */
     }
 
+
+   //récupérer les détails de la commande
+
     public void recuperer(Commande b) {
         id.setText(String.valueOf(b.getId()));
         price.setText(String.valueOf(b.getPrix()));
@@ -49,6 +54,10 @@ public class Detailcommand extends javax.swing.JFrame {
         System.out.println("contenue de getmyid =" + getmyid);
 
     }
+
+
+
+//afficher les livres sélectionnés
 
     public void show_books() throws SQLException {
        
@@ -104,7 +113,11 @@ public class Detailcommand extends javax.swing.JFrame {
         detail = new javax.swing.JTextField();
         clickme = new javax.swing.JButton();
 
+        jButton1 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(25, 11, 66));
@@ -209,6 +222,16 @@ public class Detailcommand extends javax.swing.JFrame {
         });
         jPanel1.add(clickme, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 483, 190, 40));
 
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/close_window_48px.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 0, 30, 30));
+
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 560));
 
         pack();
@@ -241,6 +264,13 @@ public class Detailcommand extends javax.swing.JFrame {
             Logger.getLogger(Detailcommand.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_clickmeActionPerformed
+
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+         System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -283,6 +313,9 @@ public class Detailcommand extends javax.swing.JFrame {
     private javax.swing.JTextField date;
     private javax.swing.JTextField detail;
     private javax.swing.JTextField id;
+
+    private javax.swing.JButton jButton1;
+
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

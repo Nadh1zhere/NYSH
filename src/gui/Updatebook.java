@@ -8,6 +8,10 @@ package gui;
 import dao.DaoBook;
 import entities.Book;
 import java.io.File;
+
+import java.io.IOException;
+
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -19,13 +23,13 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -36,7 +40,8 @@ import javax.swing.table.TableModel;
 public class Updatebook extends javax.swing.JFrame {
 
     String pathimg;
-    byte[] bytes;
+    byte[] bytes ;
+    
 
     /**
      * Creates new form Updatebook
@@ -46,14 +51,16 @@ public class Updatebook extends javax.swing.JFrame {
         id.setEditable(false);
     }
 
-    public void recuperer(Book b) {
-        id.setText(String.valueOf(b.getId()));
-        title.setText(b.getTitle());
-        price.setText(String.valueOf(b.getPrice()));
-        author.setText(b.getAuthor());
-        datechooser.setDate(java.sql.Date.valueOf(b.getReleaseDate()));
-
-    }
+//récupérer les données d'un livre
+       public void recuperer(Book b)
+       {
+           id.setText(String.valueOf(b.getId()));
+           title.setText(b.getTitle());
+           price.setText(String.valueOf(b.getPrice()));
+           author.setText(b.getAuthor());
+           date.setText(String.valueOf(b.getReleaseDate()));
+           
+       }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -79,12 +86,16 @@ public class Updatebook extends javax.swing.JFrame {
         author = new javax.swing.JTextField();
         update = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+
         datechooser = new com.toedter.calendar.JDateChooser();
+
         jLabel6 = new javax.swing.JLabel();
         listbooks = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(25, 11, 66));
@@ -145,6 +156,15 @@ public class Updatebook extends javax.swing.JFrame {
         });
         jPanel2.add(reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 220, 60));
 
+
+        date.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dateActionPerformed(evt);
+            }
+        });
+        jPanel2.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 160, 30));
+
+
         id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idActionPerformed(evt);
@@ -189,8 +209,10 @@ public class Updatebook extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setText("RELEASE DATE:");
+
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 90, 30));
         jPanel2.add(datechooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 160, 30));
+
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 340, 430));
 
@@ -218,6 +240,14 @@ public class Updatebook extends javax.swing.JFrame {
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 380, 430));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/close_window_48px.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 30, 30));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 830, 510));
 
         pack();
@@ -230,7 +260,7 @@ public class Updatebook extends javax.swing.JFrame {
         setVisible(false);
 
     }//GEN-LAST:event_listbooksActionPerformed
-
+//Modification
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         try {
             // TODO add your handling code here:
@@ -293,24 +323,36 @@ public class Updatebook extends javax.swing.JFrame {
         
     }//GEN-LAST:event_resetActionPerformed
 
+//Image
+
+
     private void choosefileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choosefileActionPerformed
         // TODO add your handling code here:
-        JFileChooser file = new JFileChooser();
+         JFileChooser file = new JFileChooser();
         file.setCurrentDirectory(new File(System.getProperty("user.home")));
         //filter the files
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images", "jpg", "jpeg", "png", "gif");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images","jpg","jpeg","png","gif");
         file.addChoosableFileFilter(filter);
         int result = file.showSaveDialog(null);
         //if clicking save
-        if (result == JFileChooser.APPROVE_OPTION) {
+        if(result==JFileChooser.APPROVE_OPTION)
+        {
             File selectedFile = file.getSelectedFile();
             String path = selectedFile.getAbsolutePath();
             pathimg = path;
-            //if the user click on save
-        } else if (result == JFileChooser.CANCEL_OPTION) {
+               //if the user click on save
+        }else if(result ==JFileChooser.CANCEL_OPTION){
+
             System.out.println("NO FILE SELECTED");
         }
     }//GEN-LAST:event_choosefileActionPerformed
+
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+         System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -350,8 +392,13 @@ public class Updatebook extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField author;
     private javax.swing.JButton choosefile;
+
     private com.toedter.calendar.JDateChooser datechooser;
+
+    private javax.swing.JTextField date;
+
     private javax.swing.JTextField id;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

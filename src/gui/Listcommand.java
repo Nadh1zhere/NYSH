@@ -5,9 +5,12 @@
  */
 package gui;
 
+
+
+
 import dao.DaoBook;
 import dao.DaoCommande;
-import entities.Book;
+
 import entities.Commande;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -33,6 +36,8 @@ public class Listcommand extends javax.swing.JFrame {
             Logger.getLogger(Listcommand.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+//listes commandes
 
     public void show_commands() throws SQLException {
         DaoCommande d = new DaoCommande();
@@ -67,6 +72,9 @@ public class Listcommand extends javax.swing.JFrame {
         menu = new javax.swing.JButton();
         comdet = new javax.swing.JButton();
 
+        jButton1 = new javax.swing.JButton();
+
+
         jTable_display_books.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -78,6 +86,9 @@ public class Listcommand extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable_display_books);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        setUndecorated(true);
+
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(25, 11, 66));
@@ -130,6 +141,15 @@ public class Listcommand extends javax.swing.JFrame {
         });
         jPanel1.add(comdet, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 450, 360, 60));
 
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/close_window_48px.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 0, 30, 30));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 570));
 
         pack();
@@ -141,6 +161,8 @@ public class Listcommand extends javax.swing.JFrame {
         m.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_menuActionPerformed
+
+//envoyer les informations d'une commande à l'interface detail commande
 
     private void comdetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comdetActionPerformed
         
@@ -164,6 +186,13 @@ public class Listcommand extends javax.swing.JFrame {
         m.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_comdetActionPerformed
+
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     /**
      * @param args the command line arguments
@@ -202,6 +231,9 @@ public class Listcommand extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton comdet;
+
+    private javax.swing.JButton jButton1;
+
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
