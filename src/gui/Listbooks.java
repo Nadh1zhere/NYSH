@@ -5,7 +5,7 @@
  */
 package gui;
 
-import DAO.DaoBook;
+import dao.DaoBook;
 import entities.Book;
 import java.awt.Image;
 import java.sql.SQLException;

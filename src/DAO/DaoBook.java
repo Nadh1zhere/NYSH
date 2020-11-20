@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO;
+package dao;
 
 import entities.Book;
 import java.io.FileInputStream;
@@ -45,6 +45,8 @@ public class DaoBook {
     }
 
     //Methode qui permet de supprimer un livre
+
+
     public int deletebook(int id) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
         PreparedStatement st = null;
@@ -83,6 +85,8 @@ public class DaoBook {
     }
 
     //Methode qui permet d'ajouter un live avec image
+
+
     public int addBookwithimage(Book book) throws SQLException, FileNotFoundException {
 
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
@@ -135,6 +139,7 @@ public class DaoBook {
     }
 
     //Methode qui permet de retourner les attributs d'un livre à partir de son id (PK)
+
     public static Book getmybook(int id) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
         Book newbook = new Book();

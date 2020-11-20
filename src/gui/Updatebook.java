@@ -5,10 +5,15 @@
  */
 package gui;
 
-import DAO.DaoBook;
+import dao.DaoBook;
 import entities.Book;
 import java.io.File;
 import java.io.IOException;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.SQLException;
@@ -19,6 +24,9 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -300,6 +308,8 @@ public class Updatebook extends javax.swing.JFrame {
         date.setText("");
     }//GEN-LAST:event_resetActionPerformed
 //Image
+
+
     private void choosefileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choosefileActionPerformed
         // TODO add your handling code here:
          JFileChooser file = new JFileChooser();
@@ -324,6 +334,7 @@ public class Updatebook extends javax.swing.JFrame {
         // TODO add your handling code here:
          System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
+
        
     /**
      * @param args the command line arguments
