@@ -26,6 +26,7 @@ public class DaoBook {
 
         Connection conn = null;
         int result = 0;
+        
         try {
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
             String sql = "UPDATE book SET title = ?,price = ?,author = ?,releaseDate = ? ,image= ? where id= ?";

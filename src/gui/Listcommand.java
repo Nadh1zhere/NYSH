@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -40,6 +41,7 @@ public class Listcommand extends javax.swing.JFrame {
 //listes commandes
 
     public void show_commands() throws SQLException {
+       JOptionPane.showMessageDialog(null,"Please select the command and click the button");
         DaoCommande d = new DaoCommande();
         ArrayList<Commande> listbook = d.listcommand();
         DefaultTableModel model = (DefaultTableModel) jTable_display_books1.getModel();
@@ -71,9 +73,7 @@ public class Listcommand extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         menu = new javax.swing.JButton();
         comdet = new javax.swing.JButton();
-
         jButton1 = new javax.swing.JButton();
-
 
         jTable_display_books.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -86,9 +86,7 @@ public class Listcommand extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable_display_books);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         setUndecorated(true);
-
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(25, 11, 66));
@@ -141,7 +139,6 @@ public class Listcommand extends javax.swing.JFrame {
         });
         jPanel1.add(comdet, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 450, 360, 60));
 
-
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/close_window_48px.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,7 +149,8 @@ public class Listcommand extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 570));
 
-        pack();
+        setSize(new java.awt.Dimension(909, 533));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuActionPerformed
@@ -231,9 +229,7 @@ public class Listcommand extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton comdet;
-
     private javax.swing.JButton jButton1;
-
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

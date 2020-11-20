@@ -112,12 +112,10 @@ public class Detailcommand extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         detail = new javax.swing.JTextField();
         clickme = new javax.swing.JButton();
-
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(25, 11, 66));
@@ -144,7 +142,7 @@ public class Detailcommand extends javax.swing.JFrame {
             jTable_display_books.getColumnModel().getColumn(1).setPreferredWidth(20);
         }
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 850, 360));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 850, 360));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Light", 0, 20)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -201,7 +199,7 @@ public class Detailcommand extends javax.swing.JFrame {
                 menuActionPerformed(evt);
             }
         });
-        jPanel1.add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 200, 60));
+        jPanel1.add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 60));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI Light", 0, 20)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -222,7 +220,6 @@ public class Detailcommand extends javax.swing.JFrame {
         });
         jPanel1.add(clickme, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 483, 190, 40));
 
-
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/close_window_48px.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,10 +228,10 @@ public class Detailcommand extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 0, 30, 30));
 
-
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 560));
 
-        pack();
+        setSize(new java.awt.Dimension(889, 545));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void priceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceActionPerformed
@@ -313,9 +310,7 @@ public class Detailcommand extends javax.swing.JFrame {
     private javax.swing.JTextField date;
     private javax.swing.JTextField detail;
     private javax.swing.JTextField id;
-
     private javax.swing.JButton jButton1;
-
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

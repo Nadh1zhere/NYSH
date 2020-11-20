@@ -28,7 +28,9 @@ public class AboutUs extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        listbooks = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -47,8 +49,28 @@ public class AboutUs extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(890, 560));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        listbooks.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        listbooks.setForeground(new java.awt.Color(25, 11, 66));
+        listbooks.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/previous_60px.png"))); // NOI18N
+        listbooks.setText("PREVIOUS");
+        listbooks.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        listbooks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listbooksActionPerformed(evt);
+            }
+        });
+        getContentPane().add(listbooks, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 60));
+
         jPanel1.setBackground(new java.awt.Color(25, 11, 66));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("© 2020-2021  NYSH BookStore All Rights Reserved");
+        jLabel5.setToolTipText("");
+        jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 390, 460, 30));
 
         jLabel2.setFont(new java.awt.Font("Berlin Sans FB", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -63,7 +85,7 @@ public class AboutUs extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 0, 30, 30));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 0, 30, 30));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/NSYH.png"))); // NOI18N
@@ -77,20 +99,28 @@ public class AboutUs extends javax.swing.JFrame {
         jTextArea1.setText("POWER NYSH BookStore is a JAVA Desktop Application \ndeveloped by Siwar AMAIRI , Yassine HAMZA and Nadhir \nTRABELSI.\nThis Application is realized into a workshop \n\"SEASAME-VERMEG\" named \"Build A BookStore\" directed by\nMr Mohamed Amine MEZGHICH\n");
         jScrollPane1.setViewportView(jTextArea1);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 490, 160));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 490, 140));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/NYSHau.PNG"))); // NOI18N
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, 420));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 894, 427));
 
-        pack();
+        setSize(new java.awt.Dimension(892, 427));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void listbooksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listbooksActionPerformed
+        // TODO add your handling code here:
+        Home l = new Home();
+        l.setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_listbooksActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,8 +163,10 @@ public class AboutUs extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton listbooks;
     // End of variables declaration//GEN-END:variables
 }
