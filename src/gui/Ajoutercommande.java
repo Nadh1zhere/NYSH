@@ -321,6 +321,7 @@ public class Ajoutercommande extends javax.swing.JFrame {
 
 
     //Ajout client 
+    //add a client
 
     private void addcom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addcom1ActionPerformed
         // TODO add your handling code here:
