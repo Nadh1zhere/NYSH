@@ -12,15 +12,15 @@ import java.io.InputStream;
 import java.sql.*;
 import java.time.*;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author Lenovo
  */
+//Class DaoBook sous le package dao
 public class DaoBook {
 
+    //Methode qui permet de modifier un livre 
     public void updatebook(Book book) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
         PreparedStatement st = null;
@@ -44,6 +44,9 @@ public class DaoBook {
         conn.close();
     }
 
+    //Methode qui permet de supprimer un livre
+
+
     public int deletebook(int id) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
         PreparedStatement st = null;
@@ -57,6 +60,7 @@ public class DaoBook {
         return result;
     }
 
+    //Methode qui permet d'ajouter un livre sans image
     public int addBook(Book book) throws SQLException {
 
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
@@ -79,6 +83,9 @@ public class DaoBook {
         conn.close();
         return result;
     }
+
+    //Methode qui permet d'ajouter un live avec image
+
 
     public int addBookwithimage(Book book) throws SQLException, FileNotFoundException {
 
@@ -106,6 +113,7 @@ public class DaoBook {
         return result;
     }
 
+    //Methode qui permet de lister les livres
     public static ArrayList<Book> listbooks() throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
 
@@ -129,6 +137,8 @@ public class DaoBook {
         conn.close();
         return listbooks;
     }
+
+    //Methode qui permet de retourner les attributs d'un livre à partir de son id (PK)
 
     public static Book getmybook(int id) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");

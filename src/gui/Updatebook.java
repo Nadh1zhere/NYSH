@@ -8,6 +8,8 @@ package gui;
 import dao.DaoBook;
 import entities.Book;
 import java.io.File;
+import java.io.IOException;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -17,12 +19,12 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -41,7 +43,7 @@ public class Updatebook extends javax.swing.JFrame {
         initComponents();
         id.setEditable(false);
     }
-
+//récupérer les données d'un livre
        public void recuperer(Book b)
        {
            id.setText(String.valueOf(b.getId()));
@@ -79,8 +81,10 @@ public class Updatebook extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         listbooks = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(25, 11, 66));
@@ -220,6 +224,14 @@ public class Updatebook extends javax.swing.JFrame {
         jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 380, 430));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/close_window_48px.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, 30, 30));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 830, 510));
 
         pack();
@@ -232,7 +244,7 @@ public class Updatebook extends javax.swing.JFrame {
         setVisible(false);
         
     }//GEN-LAST:event_listbooksActionPerformed
-
+//Modification
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         try {
             // TODO add your handling code here:
@@ -295,6 +307,8 @@ public class Updatebook extends javax.swing.JFrame {
         author.setText("");
         date.setText("");
     }//GEN-LAST:event_resetActionPerformed
+//Image
+
 
     private void choosefileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choosefileActionPerformed
         // TODO add your handling code here:
@@ -315,6 +329,12 @@ public class Updatebook extends javax.swing.JFrame {
             System.out.println("NO FILE SELECTED");
         }
     }//GEN-LAST:event_choosefileActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+         System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
        
     /**
      * @param args the command line arguments
@@ -356,6 +376,7 @@ public class Updatebook extends javax.swing.JFrame {
     private javax.swing.JButton choosefile;
     private javax.swing.JTextField date;
     private javax.swing.JTextField id;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

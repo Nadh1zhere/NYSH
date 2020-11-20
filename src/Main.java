@@ -1,21 +1,18 @@
  
 
+
+
+ 
+
 import dao.DaoBook;
 
 import dao.DaoBook;
  
 import entities.Book;
+
 import java.sql.*;
-import static java.time.Clock.system;
-import java.util.List;
-import java.util.Scanner;
-import entities.Book;
 import gui.*;
-import gui.Listbooks;
-import gui.Menu;
 import java.io.FileNotFoundException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -26,6 +23,7 @@ import java.time.format.DateTimeFormatter;
  *
  * @author Nadh
  */
+//Classe Main
 public class Main {
 
     public static void main(String[] args) throws SQLException, InterruptedException, FileNotFoundException {
