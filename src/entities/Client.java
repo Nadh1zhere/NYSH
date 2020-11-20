@@ -17,7 +17,21 @@ public class Client {
     private String tel;
     private String adresse;
  public Client(){}
+ 
+
+
     
+
+ 
+    public Client(int id, String nom, String prenom, String email, String tel, String adresse) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.tel = tel;
+        this.adresse = adresse;
+    }
+
 
     public void setId(int id) {
         this.id = id;
@@ -67,6 +81,13 @@ public class Client {
 
     public String getAdresse() {
         return adresse;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return "Client{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", tel=" + tel + ", adresse=" + adresse + '}';
     }
 
 
