@@ -26,7 +26,16 @@ import javax.swing.table.DefaultTableModel;
  * @author Lenovo
  */
 public class Ajoutercommande extends javax.swing.JFrame {
+
+
     StringBuilder sumid = new StringBuilder();
+    double sumo = 0.0;
+    StringBuilder sx = new StringBuilder();
+    
+
+
+   
+
     /**
      * Creates new form Ajoutercommande
      */
@@ -38,6 +47,11 @@ public class Ajoutercommande extends javax.swing.JFrame {
             Logger.getLogger(Ajoutercommande.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    
+   
+
+
     //Lister les livres 
      public void show_bookscommand() throws SQLException{
         DaoBook d = new DaoBook();
@@ -55,6 +69,7 @@ public class Ajoutercommande extends javax.swing.JFrame {
         model.addRow(row);
     }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,7 +102,9 @@ public class Ajoutercommande extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(25, 11, 66));
+
         setUndecorated(true);
+
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(25, 11, 66));
@@ -222,108 +239,93 @@ public class Ajoutercommande extends javax.swing.JFrame {
                 sumActionPerformed(evt);
             }
         });
-        jPanel1.add(sum, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 450, 380, 40));
+
+        jPanel1.add(sum, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 450, 320, 40));
+
+
 
         jLabel8.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("PRICE:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 440, 80, 50));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/close_window_48px.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 0, 30, 30));
+
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 450, 140, 30));
+
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 7, 890, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    /*Methode pour récupérer un String qui comporte les livres sélectionnés 
-    Le String comporte les id des livres séparés par le séparateur ","
-    Exemple "13,7,96"
-    */
-    public StringBuilder getmystring (){
-        
- 
-        StringBuilder  sx=new StringBuilder();
-        try{
-         DefaultListSelectionModel selectionModel;
-         
-        DefaultTableModel model = (DefaultTableModel) jTable_display_books.getModel();
-       
-       
+
+    public StringBuilder getmystring() {
+
+        StringBuilder sx = new StringBuilder();
+        try {
+            DefaultListSelectionModel selectionModel;
+
+            DefaultTableModel model = (DefaultTableModel) jTable_display_books.getModel();
+
             for (int i = 0; i < model.getRowCount(); i++) {
-            {
-                 boolean b = Boolean.parseBoolean(model.getValueAt(i, 6).toString());
-                 if (b) {
-                   sx =sx.append (Integer.parseInt(model.getValueAt(i,0).toString()));
-                   sx.append(",");
-                   System.out.println("*******************************************");
-                   System.out.println(sx.toString());
+                {
+                    boolean b = Boolean.parseBoolean(model.getValueAt(i, 6).toString());
+                    if (b) {
+                        sx = sx.append(Integer.parseInt(model.getValueAt(i, 0).toString()));
+                        sx.append(",");
+                        System.out.println("*******************************************");
+                        System.out.println(sx.toString());
+                    }
                 }
+
+                //sum.setText(model.getValueAt(selectedrow,0).toString());
             }
-        
-        //sum.setText(model.getValueAt(selectedrow,0).toString());
-            } 
-        }catch(NullPointerException ex){
+        } catch (NullPointerException ex) {
             System.out.println(ex);
-        }
-        finally{
+        } finally {
             System.out.println(sx.toString());
         }
-        
+
         return sx;
     }
-    
-    //Calcule somme et récupération du String des livres sélectionnés
+
     private void jTable_display_booksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_display_booksMouseClicked
             // TODO add your handling code here:
         
-       /* int selectedrow = jTable_display_books.getSelectedRow();
-        double sumo = 0.0;
-          StringBuilder  sx=new StringBuilder();
-        for(int i = 0; i < jTable_display_books.getRowCount(); i++)
-        {    
-          sumo = sumo + Double.parseDouble(jTable_display_books.getValueAt(selectedrow, 2).toString());
-        
-          sx.append(sumo);
-        
-        }*/
-        double sumo = 0.0;
-        StringBuilder  sx=new StringBuilder();
-        try{
-         DefaultListSelectionModel selectionModel;
-         
-        DefaultTableModel model = (DefaultTableModel) jTable_display_books.getModel();
-       
-       
-            for (int i = 0; i < model.getRowCount(); i++) {
-            {
-                 boolean b = Boolean.parseBoolean(model.getValueAt(i, 6).toString());
-                 if (b) {
-                   sumo = sumo + Double.parseDouble(model.getValueAt(i,2).toString());
-                   sx=sx.append(Integer.parseInt(model.getValueAt(i,0).toString()));
-                   sx.append(",");
+
+            DefaultTableModel model = (DefaultTableModel) jTable_display_books.getModel();
+        try {
+            
+
+            for (int i : jTable_display_books.getSelectedRows()) {
+                {
+                    boolean b = Boolean.parseBoolean(model.getValueAt(i, 6).toString());
+                    if (b) {
+                        sumo = sumo + Double.parseDouble(model.getValueAt(i, 2).toString());
+                        sx = sx.append(Integer.parseInt(model.getValueAt(i, 0).toString()));
+                        sx.append(",");
+                    }
                 }
-            }
-        sum.setText(Double.toString(sumo));
-        sumid = sx;
+                sum.setText(Double.toString(sumo));
+                sumid = sx;
       //  sumid.setText(sx.toString());
-        //sum.setText(model.getValueAt(selectedrow,0).toString());
-            } 
-        }catch(NullPointerException ex){
+                //sum.setText(model.getValueAt(selectedrow,0).toString());
+            }
+        } catch (NullPointerException ex) {
             System.out.println(ex);
-        }
-        finally{
+        } finally {
+
             System.out.println(sumo);
             System.out.println(sumid);
         }
     }//GEN-LAST:event_jTable_display_booksMouseClicked
 
+
     //Ajout client 
+
     private void addcom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addcom1ActionPerformed
         // TODO add your handling code here:
         String nom = nom1.getText();
@@ -344,26 +346,31 @@ public class Ajoutercommande extends javax.swing.JFrame {
         }
         String somme = sum.getText();
         try {
-            
-            int result =DaoCommande.add(f(sumid));
-            if(result==1)
-            {
-                  JOptionPane.showMessageDialog(null,"INSERTED SUCCESSFULLY");
+
+
+            int result = DaoCommande.add(f(sumid));
+            if (result == 1) {
+                JOptionPane.showMessageDialog(null, "INSERTED SUCCESSFULLY");
                 Menu2 m = new Menu2();
                 m.setVisible(true);
                 setVisible(false);
-                        
-            }else
-            {
-                  JOptionPane.showMessageDialog(null,"FAILED TO INSERT");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "FAILED TO INSERT");
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(Ajoutercommande.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
+
     }//GEN-LAST:event_addcom1ActionPerformed
 
+
+        
     
+    
+
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
         nom1.setText("");
         prenom1.setText("");
@@ -371,7 +378,9 @@ public class Ajoutercommande extends javax.swing.JFrame {
         tel1.setText("");
         adresse.setText("");
     }//GEN-LAST:event_resetActionPerformed
+
 //redirection
+
     private void menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuActionPerformed
         // TODO add your handling code here:
         Menu2 m = new Menu2();
@@ -389,7 +398,29 @@ public class Ajoutercommande extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+
+       
+        
+        DefaultTableModel model = (DefaultTableModel) jTable_display_books.getModel();
+        
+        for (int i : jTable_display_books.getSelectedRows()) {
+            {
+                boolean b = Boolean.parseBoolean(model.getValueAt(i, 6).toString());
+                if (b) {
+                    sumo = sumo + Double.parseDouble(model.getValueAt(i, 2).toString());
+                    sx = sx.append(Integer.parseInt(model.getValueAt(i, 0).toString()));
+                    sx.append(",");
+                }
+            }
+            
+            sum.setText(Double.toString(sumo));
+          
+            sumid = sx;
+        }
+         
+
         System.exit(0);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -420,7 +451,7 @@ public class Ajoutercommande extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-      
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Ajoutercommande().setVisible(true);

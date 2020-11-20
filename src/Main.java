@@ -1,12 +1,6 @@
  
 
 
-
- 
-
-import dao.DaoBook;
-
-import dao.DaoBook;
  
 import entities.Book;
 

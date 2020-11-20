@@ -8,10 +8,12 @@ import dao.DaoBook;
 import entities.Book;
 import java.io.File;
 
-
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.*;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -28,6 +30,7 @@ public class Interfaceformulaire extends javax.swing.JFrame {
     /**
      * Creates new form Interfaceformulaire
      */
+    
     public Interfaceformulaire() {
         initComponents();
     }
@@ -42,10 +45,12 @@ public class Interfaceformulaire extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+
+        datechooser = new com.toedter.calendar.JDateChooser();
+
         choosefile = new javax.swing.JButton();
         reset = new javax.swing.JButton();
         Buttonajouter = new javax.swing.JButton();
-        date1 = new javax.swing.JTextField();
         title1 = new javax.swing.JTextField();
         author = new javax.swing.JTextField();
         price = new javax.swing.JTextField();
@@ -58,7 +63,9 @@ public class Interfaceformulaire extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         menu = new javax.swing.JButton();
+
         jButton1 = new javax.swing.JButton();
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -66,6 +73,7 @@ public class Interfaceformulaire extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(25, 11, 66));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(datechooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 280, 230, 30));
 
         choosefile.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
         choosefile.setForeground(new java.awt.Color(25, 11, 66));
@@ -101,6 +109,7 @@ public class Interfaceformulaire extends javax.swing.JFrame {
         });
         jPanel1.add(Buttonajouter, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 410, 200, 60));
 
+
         date1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         date1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         date1.setOpaque(false);
@@ -110,6 +119,7 @@ public class Interfaceformulaire extends javax.swing.JFrame {
             }
         });
         jPanel1.add(date1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 270, 230, 40));
+
 
         title1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         title1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -202,6 +212,7 @@ public class Interfaceformulaire extends javax.swing.JFrame {
         });
         jPanel1.add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 60));
 
+
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/close_window_48px.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,6 +220,7 @@ public class Interfaceformulaire extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, 30, 30));
+
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 850, 500));
 
@@ -226,8 +238,23 @@ public class Interfaceformulaire extends javax.swing.JFrame {
         String auteur = author.getText();
         String prixs = price.getText();
         double prix = Double.parseDouble(prixs);
+
+        
+        
+        Date selectedDate = (Date) datechooser.getDate();
+        
+        
+        
+        DateFormat osLocalizedDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String mydate = osLocalizedDateFormat.format(selectedDate);
+        System.out.println("---------");
+        System.out.println(mydate);
+        
+        System.out.println(mydate);
+
         String dates = date1.getText();
         
+
         //creating daobook instance
         DaoBook dbook = new DaoBook();
         // creating a book
@@ -236,10 +263,16 @@ public class Interfaceformulaire extends javax.swing.JFrame {
         newbook.setTitle(titre);
         newbook.setAuthor(auteur);
         newbook.setPrice(prix);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
+     
         //convert String to LocalDate
+
+        
+        
+        newbook.setReleaseDate(LocalDate.parse(mydate));
+
         LocalDate localDate = LocalDate.parse(dates, formatter);
         newbook.setReleaseDate(localDate);
+
         newbook.setImage(pathimg);
       
             try {
@@ -266,17 +299,13 @@ public class Interfaceformulaire extends javax.swing.JFrame {
    
         author.setText("");
         price.setText("");
-        date1.setText("");
+        
         title1.setText("");
     }//GEN-LAST:event_resetActionPerformed
 
     private void jLabel2ComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jLabel2ComponentMoved
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel2ComponentMoved
-
-    private void date1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_date1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_date1ActionPerformed
 
     private void authorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_authorActionPerformed
         // TODO add your handling code here:
@@ -311,6 +340,7 @@ public class Interfaceformulaire extends javax.swing.JFrame {
         }else if(result ==JFileChooser.CANCEL_OPTION){
             System.out.println("NO FILE SELECTED");
         }
+
      
     }//GEN-LAST:event_choosefileActionPerformed
 
@@ -321,35 +351,12 @@ public class Interfaceformulaire extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
+
     /**
      * @param args the command line arguments
      */
-    public static void runme() {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Interfaceformulaire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Interfaceformulaire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Interfaceformulaire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Interfaceformulaire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+    public static void main() {
+      java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Interfaceformulaire().setVisible(true);
             }
@@ -360,6 +367,9 @@ public class Interfaceformulaire extends javax.swing.JFrame {
     private javax.swing.JButton Buttonajouter;
     private javax.swing.JTextField author;
     private javax.swing.JButton choosefile;
+
+    private com.toedter.calendar.JDateChooser datechooser;
+
     private javax.swing.JTextField date1;
 
     private javax.swing.JButton jButton1;

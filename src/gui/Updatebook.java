@@ -8,7 +8,9 @@ package gui;
 import dao.DaoBook;
 import entities.Book;
 import java.io.File;
+
 import java.io.IOException;
+
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -17,8 +19,11 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -33,9 +38,11 @@ import javax.swing.table.TableModel;
  * @author Lenovo
  */
 public class Updatebook extends javax.swing.JFrame {
+
     String pathimg;
     byte[] bytes ;
     
+
     /**
      * Creates new form Updatebook
      */
@@ -43,6 +50,7 @@ public class Updatebook extends javax.swing.JFrame {
         initComponents();
         id.setEditable(false);
     }
+
 //récupérer les données d'un livre
        public void recuperer(Book b)
        {
@@ -53,6 +61,7 @@ public class Updatebook extends javax.swing.JFrame {
            date.setText(String.valueOf(b.getReleaseDate()));
            
        }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,13 +80,15 @@ public class Updatebook extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         reset = new javax.swing.JButton();
-        date = new javax.swing.JTextField();
         id = new javax.swing.JTextField();
         title = new javax.swing.JTextField();
         price = new javax.swing.JTextField();
         author = new javax.swing.JTextField();
         update = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+
+        datechooser = new com.toedter.calendar.JDateChooser();
+
         jLabel6 = new javax.swing.JLabel();
         listbooks = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -145,12 +156,14 @@ public class Updatebook extends javax.swing.JFrame {
         });
         jPanel2.add(reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 220, 60));
 
+
         date.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dateActionPerformed(evt);
             }
         });
         jPanel2.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 160, 30));
+
 
         id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -196,7 +209,10 @@ public class Updatebook extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setText("RELEASE DATE:");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 200, 30));
+
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 90, 30));
+        jPanel2.add(datechooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 160, 30));
+
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 340, 430));
 
@@ -242,7 +258,7 @@ public class Updatebook extends javax.swing.JFrame {
         Listbooks l = new Listbooks();
         l.setVisible(true);
         setVisible(false);
-        
+
     }//GEN-LAST:event_listbooksActionPerformed
 //Modification
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
@@ -254,10 +270,13 @@ public class Updatebook extends javax.swing.JFrame {
             b.setPrice(Double.parseDouble(price.getText()));
             b.setAuthor(author.getText());
 
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-d");
-            String datex = date.getText();
-            LocalDate localDate = LocalDate.parse(datex, formatter);
-            b.setReleaseDate(localDate);
+          
+            Date selectedDate = (Date) datechooser.getDate();
+
+            DateFormat osLocalizedDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String mydate = osLocalizedDateFormat.format(selectedDate);
+            
+            b.setReleaseDate(LocalDate.parse(mydate));
             b.setId(Integer.parseInt(id.getText()));
             try {
                 bytes = Files.readAllBytes(Paths.get(pathimg));
@@ -268,7 +287,7 @@ public class Updatebook extends javax.swing.JFrame {
             DaoBook d = new DaoBook();
             d.updatebook(b);
 
-            JOptionPane.showMessageDialog(null,"UPDATED SUCCESSFULLY");
+            JOptionPane.showMessageDialog(null, "UPDATED SUCCESSFULLY");
         } catch (SQLException ex) {
             Logger.getLogger(Updatebook.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -295,18 +314,15 @@ public class Updatebook extends javax.swing.JFrame {
         id.setEditable(false);
     }//GEN-LAST:event_idActionPerformed
 
-    private void dateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dateActionPerformed
-
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
         // TODO add your handling code here:
         id.setText("");
         title.setText("");
         price.setText("");
         author.setText("");
-        date.setText("");
+        
     }//GEN-LAST:event_resetActionPerformed
+
 //Image
 
 
@@ -326,16 +342,18 @@ public class Updatebook extends javax.swing.JFrame {
             pathimg = path;
                //if the user click on save
         }else if(result ==JFileChooser.CANCEL_OPTION){
+
             System.out.println("NO FILE SELECTED");
         }
     }//GEN-LAST:event_choosefileActionPerformed
+
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
          System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-       
+
     /**
      * @param args the command line arguments
      */
@@ -374,7 +392,11 @@ public class Updatebook extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField author;
     private javax.swing.JButton choosefile;
+
+    private com.toedter.calendar.JDateChooser datechooser;
+
     private javax.swing.JTextField date;
+
     private javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

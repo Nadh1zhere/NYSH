@@ -40,7 +40,9 @@ public class Menu extends javax.swing.JFrame {
         addbook1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         menu = new javax.swing.JButton();
+
         jButton1 = new javax.swing.JButton();
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(25, 11, 66));
@@ -94,7 +96,7 @@ public class Menu extends javax.swing.JFrame {
                 menuActionPerformed(evt);
             }
         });
-        jPanel1.add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 60));
+
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/close_window_48px.png"))); // NOI18N
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -103,6 +105,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 0, 30, 30));
+
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 540));
 
@@ -138,10 +141,12 @@ public class Menu extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_menuActionPerformed
 
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_jButton1ActionPerformed
+
 
     /**
      * @param args the command line arguments

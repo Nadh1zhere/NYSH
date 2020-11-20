@@ -21,6 +21,7 @@ import java.time.LocalDate;
  */
 //Classe DaoClient sous le package dao
 public class DaoClient {
+
     //Methode qui permet d'ajouter un client
     public static int addclient(Client c) throws SQLException{
        
@@ -30,20 +31,33 @@ public class DaoClient {
         String sql = "insert into client (nom,prenom,email,tel,adresse) values(?,?,?,?,?)";
         st = conn.prepareStatement(sql);
 
-        st.setString(1,c.getNom());
-        st.setString(2,c.getPrenom());
-        st.setString(3,c.getEmail());
-        st.setString(4,c.getTel());
-        st.setString(5,c.getAdresse());
-        int result = st.executeUpdate();
-        if (result == 1) {
-            System.out.println("INSERTED SUCCESSFULLY");
-        } else {
-            System.out.println("ERROR CHECK YOUR CODE");
+
+    public static int addclient(Client c) throws SQLException {
+        Connection conn = null;
+        PreparedStatement st = null;
+        int result = 0;
+        try {
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
+            String sql = "insert into client (nom,prenom,email,tel,adresse) values(?,?,?,?,?)";
+            st = conn.prepareStatement(sql);
+
+            st.setString(1, c.getNom());
+            st.setString(2, c.getPrenom());
+            st.setString(3, c.getEmail());
+            st.setString(4, c.getTel());
+            st.setString(5, c.getAdresse());
+            result = st.executeUpdate();
+            if (result == 1) {
+                System.out.println("INSERTED SUCCESSFULLY");
+            } else {
+                System.out.println("ERROR CHECK YOUR CODE");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            st.close();
+            conn.close();
         }
-        st.close();
-        conn.close();
-       
-       return result;
+        return result;
     }
 }
