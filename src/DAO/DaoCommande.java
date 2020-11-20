@@ -166,31 +166,7 @@ public class DaoCommande {
     }
 
 
-    public static ArrayList<Commande> listcommand() throws SQLException {
-        Connection conn = null;
-        Statement st = null;
-        ArrayList<Commande> listcom = new ArrayList<>();
-        try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
-
-            st = conn.createStatement();
-            String sql = "select id,date_commande,prix,detail from commande";
-            ResultSet rs = st.executeQuery(sql);
-
-            while (rs.next()) {
-                Commande newcom = new Commande();
-                newcom.setId(rs.getInt("id"));
-                newcom.setPrix(Double.parseDouble(rs.getString("prix")));
-                LocalDate date = rs.getDate("date_commande").toLocalDate();
-                newcom.setDatecommande(java.sql.Date.valueOf(date));
-                newcom.setDetail(rs.getString("detail"));
-                listcom.add(newcom);
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        } finally {
-            st.close();
-            conn.close();
+   
 
     //Methode qui permet de lister les commandes 
     public static ArrayList<Commande> listcommand() throws SQLException {

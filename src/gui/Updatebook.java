@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -58,7 +59,7 @@ public class Updatebook extends javax.swing.JFrame {
            title.setText(b.getTitle());
            price.setText(String.valueOf(b.getPrice()));
            author.setText(b.getAuthor());
-           date.setText(String.valueOf(b.getReleaseDate()));
+           datechooser.setDate(java.sql.Date.valueOf(b.getReleaseDate()));
            
        }
 
@@ -86,9 +87,7 @@ public class Updatebook extends javax.swing.JFrame {
         author = new javax.swing.JTextField();
         update = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-
         datechooser = new com.toedter.calendar.JDateChooser();
-
         jLabel6 = new javax.swing.JLabel();
         listbooks = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -156,15 +155,6 @@ public class Updatebook extends javax.swing.JFrame {
         });
         jPanel2.add(reset, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 220, 60));
 
-
-        date.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dateActionPerformed(evt);
-            }
-        });
-        jPanel2.add(date, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 160, 30));
-
-
         id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idActionPerformed(evt);
@@ -209,10 +199,8 @@ public class Updatebook extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setText("RELEASE DATE:");
-
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 90, 30));
         jPanel2.add(datechooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, 160, 30));
-
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 70, 340, 430));
 
@@ -271,7 +259,7 @@ public class Updatebook extends javax.swing.JFrame {
             b.setAuthor(author.getText());
 
           
-            Date selectedDate = (Date) datechooser.getDate();
+            java.util.Date selectedDate = (Date) datechooser.getDate();
 
             DateFormat osLocalizedDateFormat = new SimpleDateFormat("yyyy-MM-dd");
             String mydate = osLocalizedDateFormat.format(selectedDate);
@@ -392,11 +380,7 @@ public class Updatebook extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField author;
     private javax.swing.JButton choosefile;
-
     private com.toedter.calendar.JDateChooser datechooser;
-
-    private javax.swing.JTextField date;
-
     private javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
