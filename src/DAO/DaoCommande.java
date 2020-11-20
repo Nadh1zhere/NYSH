@@ -22,8 +22,10 @@ import java.util.ArrayList;
  *
  * @author Lenovo
  */
+//Class DaoCommande sous le package dao
 public class DaoCommande {
-
+/* Methode qui permet de récupérer un String qui comprte les id (PK) des livres selectionnés dans une commande à partir d'un arraylist des livres sélectionnés les id  
+   récupérés dans le String son séparer par le séparateur "," EXEMPLE "5,8,19"  */
     public static String fMoinsUn(ArrayList<Book> lb) {
         StringBuilder s = new StringBuilder();
         for (int i = 0; i < lb.size(); i++)
@@ -35,6 +37,9 @@ public class DaoCommande {
         return s.toString();
     }
 
+   /*
+    Methode qui permet de récupérer une liste de livres (ArrayList <Book>) a partir d'un String récupérer lors de l'insertion d'une commande par le client 
+    */
     public static ArrayList<Book> f(StringBuilder s) throws SQLException {
         ArrayList<Book> lb = new ArrayList<>();
         ArrayList<Integer> li = new ArrayList<>();
@@ -49,7 +54,7 @@ public class DaoCommande {
         }
         return lb;
     }
-
+//Methode qui permet d'ajout une commande , cette methode prend en parametre une liste de livres 
     public static int add(ArrayList<Book> lb) throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
         System.out.println(conn + " Connected successfully");
@@ -74,6 +79,7 @@ public class DaoCommande {
 
     }
 
+    //Methode qui permet d'ajouter une commande
     public static int add() throws SQLException {
         StringBuilder s = new StringBuilder("1,2,3");
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
@@ -88,7 +94,11 @@ public class DaoCommande {
         LocalDate localDate = LocalDate.parse(dates, formatter);
         ArrayList<Book> lb = DaoBook.listbooks();
 
+ 
         Commande c = new Commande(java.sql.Date.valueOf(localDate), 10.3, lb, 1);
+
+        
+ 
 
         st.setDate(1, Date.valueOf(LocalDate.now()));
         st.setDouble(2, resbook(lb));
@@ -105,6 +115,7 @@ public class DaoCommande {
         return result;
     }
 
+    //Methode qui permet de calculer le prix total des livres au fur et à mesure (lors de la sélection des livres)
     public static double resbook(ArrayList<Book> b) {
         double resbook = 0.0;
         for (int i = 0; i < b.size(); i++) {
@@ -112,7 +123,8 @@ public class DaoCommande {
         }
         return resbook;
     }
-     public static ArrayList<Commande> listcommand() throws SQLException {
+    //Methode qui permet de lister les commandes 
+    public static ArrayList<Commande> listcommand() throws SQLException {
         Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore", "root", "");
 
         Statement st = conn.createStatement();
@@ -133,6 +145,7 @@ public class DaoCommande {
         conn.close();
         return listcom;
     }
+    //Main pour le test 
     public static void main(String[] args) throws SQLException {
         add(f(new StringBuilder("1,3,19")));
     }

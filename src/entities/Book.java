@@ -11,6 +11,7 @@ import java.time.*;
  *
  * @author Nadh
  */
+//Model Book
 public class Book {
     
     
@@ -22,6 +23,7 @@ public class Book {
     private String image;
     private byte[] img;
 
+    //Constructeur sans id (PK est AI)
     public Book(String title, double price, String author, LocalDate releaseDate, byte[] img) {
         this.title = title;
         this.price = price;

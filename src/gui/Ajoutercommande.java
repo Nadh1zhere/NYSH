@@ -5,8 +5,8 @@
  */
 package gui;
 
-import static com.sun.xml.internal.fastinfoset.alphabet.BuiltInRestrictedAlphabets.table;
-import DAO.*;
+
+import dao.*;
 import static dao.DaoClient.addclient;
 import static dao.DaoCommande.f;
 
@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListSelectionModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -37,6 +38,7 @@ public class Ajoutercommande extends javax.swing.JFrame {
             Logger.getLogger(Ajoutercommande.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    //Lister les livres 
      public void show_bookscommand() throws SQLException{
         DaoBook d = new DaoBook();
     ArrayList<Book> listbook = d.listbooks();
@@ -81,9 +83,11 @@ public class Ajoutercommande extends javax.swing.JFrame {
         menu = new javax.swing.JButton();
         sum = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(25, 11, 66));
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(25, 11, 66));
@@ -225,12 +229,25 @@ public class Ajoutercommande extends javax.swing.JFrame {
         jLabel8.setText("PRICE:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 440, 80, 50));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/close_window_48px.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 0, 30, 30));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 7, 890, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    /*Methode pour récupérer un String qui comporte les livres sélectionnés 
+    Le String comporte les id des livres séparés par le séparateur ","
+    Exemple "13,7,96"
+    */
     public StringBuilder getmystring (){
         
+ 
         StringBuilder  sx=new StringBuilder();
         try{
          DefaultListSelectionModel selectionModel;
@@ -261,6 +278,7 @@ public class Ajoutercommande extends javax.swing.JFrame {
         return sx;
     }
     
+    //Calcule somme et récupération du String des livres sélectionnés
     private void jTable_display_booksMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_display_booksMouseClicked
             // TODO add your handling code here:
         
@@ -305,6 +323,7 @@ public class Ajoutercommande extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTable_display_booksMouseClicked
 
+    //Ajout client 
     private void addcom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addcom1ActionPerformed
         // TODO add your handling code here:
         String nom = nom1.getText();
@@ -325,13 +344,26 @@ public class Ajoutercommande extends javax.swing.JFrame {
         }
         String somme = sum.getText();
         try {
-            DaoCommande.add(f(sumid));
+            
+            int result =DaoCommande.add(f(sumid));
+            if(result==1)
+            {
+                  JOptionPane.showMessageDialog(null,"INSERTED SUCCESSFULLY");
+                Menu2 m = new Menu2();
+                m.setVisible(true);
+                setVisible(false);
+                        
+            }else
+            {
+                  JOptionPane.showMessageDialog(null,"FAILED TO INSERT");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(Ajoutercommande.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_addcom1ActionPerformed
 
+    
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
         nom1.setText("");
         prenom1.setText("");
@@ -339,7 +371,7 @@ public class Ajoutercommande extends javax.swing.JFrame {
         tel1.setText("");
         adresse.setText("");
     }//GEN-LAST:event_resetActionPerformed
-
+//redirection
     private void menuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuActionPerformed
         // TODO add your handling code here:
         Menu2 m = new Menu2();
@@ -354,6 +386,11 @@ public class Ajoutercommande extends javax.swing.JFrame {
     private void sumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sumActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_sumActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -395,6 +432,7 @@ public class Ajoutercommande extends javax.swing.JFrame {
     private javax.swing.JButton addcom1;
     private javax.swing.JTextField adresse;
     private javax.swing.JTextField email1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

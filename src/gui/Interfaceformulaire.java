@@ -6,19 +6,21 @@
 package gui;
 import DAO.DaoBook;
 import entities.Book;
-import java.io.FileNotFoundException;
-import java.sql.SQLException;
+import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  *
  * @author Lenovo
  */
 public class Interfaceformulaire extends javax.swing.JFrame {
     int result;
+    String pathimg;
     /**
      * Creates new form Interfaceformulaire
      */
@@ -36,13 +38,13 @@ public class Interfaceformulaire extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        choosefile = new javax.swing.JButton();
         reset = new javax.swing.JButton();
         Buttonajouter = new javax.swing.JButton();
         date1 = new javax.swing.JTextField();
         title1 = new javax.swing.JTextField();
         author = new javax.swing.JTextField();
         price = new javax.swing.JTextField();
-        img = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -52,12 +54,24 @@ public class Interfaceformulaire extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         menu = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(25, 11, 66));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        choosefile.setFont(new java.awt.Font("Segoe UI Light", 0, 14)); // NOI18N
+        choosefile.setForeground(new java.awt.Color(25, 11, 66));
+        choosefile.setText("Choose file");
+        choosefile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                choosefileActionPerformed(evt);
+            }
+        });
+        jPanel1.add(choosefile, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 340, 140, 30));
 
         reset.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         reset.setForeground(new java.awt.Color(25, 11, 66));
@@ -123,16 +137,6 @@ public class Interfaceformulaire extends javax.swing.JFrame {
         });
         jPanel1.add(price, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 160, 230, 40));
 
-        img.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        img.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        img.setOpaque(false);
-        img.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                imgActionPerformed(evt);
-            }
-        });
-        jPanel1.add(img, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 330, 230, 40));
-
         jLabel11.setFont(new java.awt.Font("Segoe UI Light", 0, 20)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -149,8 +153,8 @@ public class Interfaceformulaire extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Segoe UI Light", 0, 20)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Image path:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 330, 40));
+        jLabel9.setText("Image :");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 330, 260, 40));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI Light", 0, 20)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -194,19 +198,23 @@ public class Interfaceformulaire extends javax.swing.JFrame {
         });
         jPanel1.add(menu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 200, 60));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/gui/close_window_48px.png"))); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, 30, 30));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 850, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void imgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imgActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_imgActionPerformed
-
     private void priceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_priceActionPerformed
-
+//Ajout livre
     private void ButtonajouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonajouterActionPerformed
         // TODO add your handling code here:
         
@@ -215,7 +223,7 @@ public class Interfaceformulaire extends javax.swing.JFrame {
         String prixs = price.getText();
         double prix = Double.parseDouble(prixs);
         String dates = date1.getText();
-        String img1 = img.getText();
+        
         //creating daobook instance
         DaoBook dbook = new DaoBook();
         // creating a book
@@ -228,7 +236,7 @@ public class Interfaceformulaire extends javax.swing.JFrame {
         //convert String to LocalDate
         LocalDate localDate = LocalDate.parse(dates, formatter);
         newbook.setReleaseDate(localDate);
-        newbook.setImage(img1);
+        newbook.setImage(pathimg);
       
             try {
                 // calling daobook
@@ -251,7 +259,7 @@ public class Interfaceformulaire extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonajouterActionPerformed
 
     private void resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetActionPerformed
-        img.setText("");
+   
         author.setText("");
         price.setText("");
         date1.setText("");
@@ -280,6 +288,32 @@ public class Interfaceformulaire extends javax.swing.JFrame {
         m.setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_menuActionPerformed
+
+    private void choosefileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choosefileActionPerformed
+        // TODO add your handling code here:
+        JFileChooser file = new JFileChooser();
+        file.setCurrentDirectory(new File(System.getProperty("user.home")));
+        //filter the files
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images","jpg","jpeg","png","gif");
+        file.addChoosableFileFilter(filter);
+        int result = file.showSaveDialog(null);
+        //if clicking save
+        if(result==JFileChooser.APPROVE_OPTION)
+        {
+            File selectedFile = file.getSelectedFile();
+            String path = selectedFile.getAbsolutePath();
+            pathimg = path;
+               //if the user click on save
+        }else if(result ==JFileChooser.CANCEL_OPTION){
+            System.out.println("NO FILE SELECTED");
+        }
+     
+    }//GEN-LAST:event_choosefileActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+         System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -319,8 +353,9 @@ public class Interfaceformulaire extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buttonajouter;
     private javax.swing.JTextField author;
+    private javax.swing.JButton choosefile;
     private javax.swing.JTextField date1;
-    private javax.swing.JTextField img;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

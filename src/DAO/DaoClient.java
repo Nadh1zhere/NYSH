@@ -19,7 +19,9 @@ import java.time.LocalDate;
  *
  * @author Lenovo
  */
+//Classe DaoClient sous le package dao
 public class DaoClient {
+    //Methode qui permet d'ajouter un client
     public static int addclient(Client c) throws SQLException{
        
        PreparedStatement st = null;

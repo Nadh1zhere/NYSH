@@ -1,17 +1,10 @@
+ 
 
-import DAO.DaoBook;
-import entities.Book;
+
+ 
 import java.sql.*;
-import static java.time.Clock.system;
-import java.util.List;
-import java.util.Scanner;
-import entities.Book;
 import gui.*;
-import gui.Listbooks;
-import gui.Menu;
 import java.io.FileNotFoundException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,6 +15,7 @@ import java.time.format.DateTimeFormatter;
  *
  * @author Nadh
  */
+//Classe Main
 public class Main {
 
     public static void main(String[] args) throws SQLException, InterruptedException, FileNotFoundException {
@@ -59,13 +53,10 @@ public class Main {
        /* Scanner scannerInt = new Scanner(System.in);
         System.out.println("Veuillez saisir la quantitÃ© ");
         int quantite = scannerInt.nextInt();
-
         Scanner scannerFloat = new Scanner(System.in);
         System.out.println("Veuillez saisir le prix unitaire");
         float prixUnitaire = scannerFloat.nextFloat();
-
         Utility utility = new Utility();
-
         System.out.println("Le prix total est " + utility.calculateTotalPrice(quantite, prixUnitaire));*/
         
       /*  
@@ -136,7 +127,6 @@ public class Main {
                             System.out.println("Au revoir à la prochaine ! 0");
                         System.out.println("************************************************");
                             break;
-
     }
 }*/
             

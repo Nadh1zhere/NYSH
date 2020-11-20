@@ -12,6 +12,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Lenovo
  */
+//Claase TheModel qui va servir à afficher les images 
 public class TheModel extends AbstractTableModel{
 
     private String [] columns ;
@@ -24,6 +25,7 @@ public class TheModel extends AbstractTableModel{
         this.rows = rows;
     }
     
+    @Override
     public Class getColumnClass (int column)
     {
         if(column==5)
@@ -35,19 +37,23 @@ public class TheModel extends AbstractTableModel{
         }
     }
     
+    @Override
     public int getRowCount() {
         return this.rows.length;
     }
 
     
+    @Override
     public int getColumnCount() {
      return this.columns.length;
     }
 
    
+    @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
        return this.rows[rowIndex][columnIndex];
     }
+    @Override
     public String getColumnName(int col){
         return this.columns[col];
     }
